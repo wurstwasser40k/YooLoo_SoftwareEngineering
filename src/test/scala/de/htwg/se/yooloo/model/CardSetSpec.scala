@@ -6,6 +6,8 @@ import org.scalatest.{Matchers, WordSpec}
   * Created by svenb on 11.04.2017.
   */
 class CardSetSpec extends WordSpec with Matchers {
+  //TODO: Klären, ob Tests je Element verschachteln
+
 
 
   "Calling addToCardSet(1)" should {
@@ -15,8 +17,6 @@ class CardSetSpec extends WordSpec with Matchers {
       assert(set1.cardSet == List(1))
 
     }
-
-
   }
 
   "Calling addToCardSet(1) addToCardSet(2)" should {
