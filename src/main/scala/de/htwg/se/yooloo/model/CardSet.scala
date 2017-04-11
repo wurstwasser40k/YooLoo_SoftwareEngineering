@@ -1,15 +1,42 @@
 package de.htwg.se.yooloo.model
 
 /**
-  * Created by svenb on 29.03.2017.
-  */
+ * Created by svenb on 29.03.2017.
+ */
 
-class CardSet {
+ case class CardSet()  {
 
-  val cardSet: Vector[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) //the cards in the set
+  var cardSet: List[Int] = Nil //the cards in the set
 
-  def sortCardset {
-    //TODO: sort vector cardSet via console
+
+
+  def addToCardset(input: Int) {
+//TODO: Test, dass man Werte zwischen 1und 10 und keine Redundanz
+    println("Which card do you want to put next?")
+
+
+
+    require(input<=10,"User has to choose a card between 1 and 10")
+    require(input>=1,"User has to choose a card between 1 and 10")
+    require(cardSet.distinct == cardSet, "cardSet must not contain dupolicate cards")
+
+    cardSet =   input :: cardSet
+
+
+
+
+
   }
+
+
+
+  def sortCardSet: Unit = {
+    for{
+      n <- 1.to(10)
+    }if(1==1)addToCardset(scala.io.StdIn.readInt())
+  }
+
+
+
 
 }

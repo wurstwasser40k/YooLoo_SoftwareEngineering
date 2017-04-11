@@ -1,8 +1,8 @@
 package de.htwg.se.yooloo.model
 
 /**
-  * Created by svenb on 29.03.2017.
-  */
+ * Created by svenb on 29.03.2017.
+ */
 class PlayingField {
 
   val playerList = List() //contains the player-objects

@@ -1,8 +1,8 @@
 package de.htwg.se.yooloo.model
 
 /**
-  * Created by svenb on 29.03.2017.
-  */
+ * Created by svenb on 29.03.2017.
+ */
 case class Player(namePlayer: String, cardSet: CardSet) {
 
   //Langfristige Idee: Punkte mit Liste/Vector festhalten
