@@ -60,15 +60,11 @@ case class CardSet() {
     val myRandStream = new Random()
 
 
-
-
-
-
     while (cardSet.length <= 9) {
 
 
       try{
-        val input =  myRandStream.nextInt(11)
+        val input =  myRandStream.nextInt(10)+1
         addToCardset(input)
 
       }
