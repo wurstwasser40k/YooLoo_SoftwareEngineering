@@ -21,11 +21,11 @@ object Yooloo {
 
     println("AI-Player...Type the name of player 3?: " )
     val namePlayer3 = scala.io.StdIn.readLine()
-    val player3 =  Player(namePlayer2)
+    val player3 =  Player(namePlayer3)
     val set3 =  CardSet()
 
     //Set up playing field
-    val playingField = new PlayingField(List(player1,player2,player3))
+    val playingField = new PlayingField(player1,player2,player3)
     playingField.makeAMove(set1,set2,set3)
 
 
