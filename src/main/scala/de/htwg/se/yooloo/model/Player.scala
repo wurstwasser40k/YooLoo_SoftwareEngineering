@@ -14,4 +14,7 @@ case class Player(namePlayer: String) {
     this.points = this.points + points
   }
 
+
+
+
 }

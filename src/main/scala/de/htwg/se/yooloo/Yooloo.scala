@@ -1,25 +1,47 @@
 package de.htwg.se.yooloo
 
-import de.htwg.se.yooloo.model.{CardSet, Player}
+import de.htwg.se.yooloo.model.{CardSet, Player, PlayingField}
 
 /**
  * Created by Vk on 07.04.2017.
  */
 object Yooloo {
   def main(args: Array[String]): Unit = {
-    println("Yooloo startet nun.")
+    println("Yooloo is starting...")
 
-    println("Der Spieler heißt: " )
-    val namePlayer = scala.io.StdIn.readLine()
-
+    println("Type the name of player 1?: " )
+    val namePlayer1 = scala.io.StdIn.readLine()
+    val player1 = new Player(namePlayer1)
     val set1 = new CardSet()
-    set1.sortCardSet
 
-    println(set1.cardSet)
+    println("AI-Player...Type the name of player 2?: " )
+    val namePlayer2 = scala.io.StdIn.readLine()
+    val player2 =  Player(namePlayer2)
+    val set2 =  CardSet()
 
-    val player = new Player(namePlayer, set1)
-    println()
-    println(player.toString)
+    println("AI-Player...Type the name of player 3?: " )
+    val namePlayer3 = scala.io.StdIn.readLine()
+    val player3 =  Player(namePlayer2)
+    val set3 =  CardSet()
+
+    //Set up playing field
+    val playingField = new PlayingField(List(player1,player2,player3))
+    playingField.makeAMove(set1,set2,set3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
 
