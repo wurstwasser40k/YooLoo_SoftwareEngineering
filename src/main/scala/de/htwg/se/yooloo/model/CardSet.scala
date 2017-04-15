@@ -34,25 +34,19 @@ case class CardSet() {
 
   def sortCardSet: Unit = {
     println("Which card do you want to put first?")
-    var input: Int = -1
-
 
     while (cardSet.length <= 9) {
 
 
       try{
-      var input = scala.io.StdIn.readInt()
+      val input = scala.io.StdIn.readInt()
       addToCardset(input)
 
       }
       catch{
         case e: NumberFormatException => println("You have to  type an Int-value...String is not allowed")
+        case oe: Exception => println("Other Exception")
       }
-
-
-
-
-
     }
   }
 }
