@@ -12,23 +12,47 @@ case class CardSet() {
 
   def addToCardset(input: Int) {
     //TODO: Test, dass man Werte zwischen 1und 10 und keine Redundanz
-    println("Which card do you want to put next?")
+
+
+
 
     //if wrong userinput
-    if (input < 1 || input > 10 || cardSet.contains(input) == true) {
-       println("Fehleingabe vom User: Karte hat Wert 1-10, oder befindet sich bereits im Deck" +
-        "..erhöhe sortingSteps")
+    if (input <= 0 || input >= 11 || cardSet.contains(input) == true) {
+      println("Wrong User-Input: Card has to be between 1-10, or the card you wanted to add is already " +
+        " is already inside your cardset -> Choose another card!")
+
     } else {
       cardSet = input :: cardSet
+      println("Your current cardSet: "+cardSet)
+      if(cardSet.length <= 8){
+        println("Which card do you want to put next?")
+      }
+
     }
   }
 
 
   def sortCardSet: Unit = {
-   println("Which card do you want to put first?")
-    while (cardSet.length < 10) {
-      addToCardset(scala.io.StdIn.readInt())
-      println(cardSet)
+    println("Which card do you want to put first?")
+    var input: Int = -1
+
+
+    while (cardSet.length <= 9) {
+
+
+      try{
+      var input = scala.io.StdIn.readInt()
+      addToCardset(input)
+
+      }
+      catch{
+        case e: NumberFormatException => println("You have to  type an Int-value...String is not allowed")
+      }
+
+
+
+
+
     }
   }
 }
