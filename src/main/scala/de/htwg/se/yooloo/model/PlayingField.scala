@@ -110,7 +110,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
     //case3: all cards are equal -> nobody wins..points are added up
     if(card1==card2==card3){
       nobodyWon=true
-      println("nobody won.!!!!!!!!!!!")
+      println("nobody won this round - points should add up")
     }
 
 
