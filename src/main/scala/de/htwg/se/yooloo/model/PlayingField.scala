@@ -20,7 +20,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
     println("Player 1 - sort your cardDeck")
     set1.sortCardSet
 
-    println("Player 2 - sort your cardDeck")
+/**    println("Player 2 - sort your cardDeck")
     set2.sortCardSetAutomatically
 
     println("Player 3 - sort your cardDeck")
@@ -39,6 +39,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
 
 
 
+
     //3 possibilities:
     // A)One card is the highest --> winner is clear
     // B)2 Players have the highest (equal) card, e.g. both have an 8, while the third player has a 6 -->
@@ -49,6 +50,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
     while(i<=9){
 
       if(nobodyWon==true){
+
 
         val cumulatedPointvalue=pointValue+pointValue-1
         decideWhoGetsThePoint(set1Array(i),set2Array(i),set3Array(i),cumulatedPointvalue:Int)
@@ -112,6 +114,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
       nobodyWon=true
       println("nobody won this round - points should add up")
     }
+  **/
 
 
   }
