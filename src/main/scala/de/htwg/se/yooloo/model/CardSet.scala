@@ -1,5 +1,7 @@
 package de.htwg.se.yooloo.model
 
+import scala.util.Random
+
 /**
   * Created by svenb on 29.03.2017.
   */
@@ -42,14 +44,14 @@ case class CardSet() {
       }
     }
   }
-}
+
 
 
   /**
     * In case we want to implememt an AI, this method sorts the cardDeck
     */
-  /**
-  def sortCardSetAutomatically: Unit = {
+
+   def sortCardSetAutomatically: Unit = {
 
     val myRandStream = new Random()
 
@@ -76,4 +78,3 @@ case class CardSet() {
     println(this.toString + "has been sorted automatically")
   }
 }
-*/

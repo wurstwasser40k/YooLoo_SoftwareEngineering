@@ -13,18 +13,20 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
   /**
     * Every player sorts his cardSet
     */
+
+  /**TODO:
+    * - Methode ändern,
+    */
   def makeAMove(set1: CardSet, set2: CardSet,set3: CardSet): Unit = {
-
-
-    //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
+    //Sort the cardsets for each player
     println("Player 1 - sort your cardDeck")
     set1.sortCardSet
 
-/**    println("Player 2 - sort your cardDeck")
-    set2.sortCardSetAutomatically
+    println("Player 2 - sort your cardDeck")
+    set2.sortCardSet
 
     println("Player 3 - sort your cardDeck")
-    set3.sortCardSetAutomatically
+    set3.sortCardSet
 
 
     println("Set1:"+set1.cardSet )
@@ -114,7 +116,6 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
       nobodyWon=true
       println("nobody won this round - points should add up")
     }
-  **/
 
 
   }
