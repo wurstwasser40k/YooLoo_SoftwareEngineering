@@ -28,5 +28,10 @@ object Yooloo {
     val playingField = new PlayingField(player1, player2, player3)
     //TODO: ACHTUNG: Verbindung Player - cardset ist jetzt nicht mehr da
     playingField.makeAMove(set1, set2, set3)
+
+    println(player1.namePlayer + " has points (in total):" + player1.totalPoints)
+    println(player2.namePlayer + " has points (in total):"  + player2.totalPoints)
+    println(player3.namePlayer + " has points (in total):"  + player3.totalPoints)
+
   }
 }
