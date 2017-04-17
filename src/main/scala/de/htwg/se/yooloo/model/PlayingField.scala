@@ -11,7 +11,7 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
 
 
   /**
-    * Every player sorts his cardSet
+    * One full move where the 10 cards are sorted and points are evaluated
     */
   def makeAMove(set1: CardSet, set2: CardSet,set3: CardSet): Unit = {
 
@@ -39,7 +39,17 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
   }
 
 
-
+  /**
+    * Evaluates the points for 3 cardsets for each of the 10 cards
+    * Prints out something like:
+    * "Player(b) receives 1 points"
+    * "Player(a) receives 2 points"
+    * ...
+    * "Player(c) receives 10 points"
+    * @param set1
+    * @param set2
+    * @param set3
+    */
   def evaluatePoints(set1: List[Int], set2: List[Int], set3: List[Int]) = {
 
     println("Set1:"+  set1 )
@@ -68,7 +78,17 @@ case class PlayingField (player1: Player,player2: Player, player3: Player ) {
 
   }
 
-
+  /**
+    * Takes 3 cards into account and decides which card wins.
+    * In case there is a clear winner --> the respective player gets the respective amount of points
+    * and the variable pointsInThePott is set  to 0 again.
+    * In case there is no winner the variable pointsInThePott is not set to 0...so the amount of points in the next
+    * round will be higher (c.f. method evaluatePoints)
+    * @param card1
+    * @param card2
+    * @param card3
+    * @param pointValue
+    */
   def decideWhoGetsThePoint(card1: Int, card2: Int, card3: Int, pointValue:Int) = {
 
     //case 1: One player clearly wins the round
