@@ -11,17 +11,11 @@ case class Player(namePlayer: String) {
 
   //Langfristige Idee: Punkte mit Liste/Vector festhalten
   var pointsForOneRound: Int = 0
-  var totalPoints: Int = 0       //TODO: Ist var okay, not immutable?
-
-
-
+  var totalPoints: Int = 0 //TODO: Ist var okay, not immutable?
 
   def addPoints(points: Int): Unit = {
-    println(this +" receives " + points +" points")
+    println(this + " receives " + points + " points")
     this.totalPoints = this.totalPoints + points
   }
-
-
-
 
 }

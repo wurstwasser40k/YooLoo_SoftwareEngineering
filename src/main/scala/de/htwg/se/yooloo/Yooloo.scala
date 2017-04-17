@@ -1,10 +1,10 @@
 package de.htwg.se.yooloo
 
-import de.htwg.se.yooloo.model.{CardSet, Player, PlayingField}
+import de.htwg.se.yooloo.model.{ CardSet, Player, PlayingField }
 
 /**
-  * Created by Vk on 07.04.2017.
-  */
+ * Created by Vk on 07.04.2017.
+ */
 object Yooloo {
   def main(args: Array[String]): Unit = {
     println("Yooloo is starting...")
@@ -30,8 +30,8 @@ object Yooloo {
     playingField.makeAMove(set1, set2, set3)
 
     println(player1.namePlayer + " has points (in total):" + player1.totalPoints)
-    println(player2.namePlayer + " has points (in total):"  + player2.totalPoints)
-    println(player3.namePlayer + " has points (in total):"  + player3.totalPoints)
+    println(player2.namePlayer + " has points (in total):" + player2.totalPoints)
+    println(player3.namePlayer + " has points (in total):" + player3.totalPoints)
 
   }
 }
