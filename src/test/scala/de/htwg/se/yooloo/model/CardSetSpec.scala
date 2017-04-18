@@ -1,14 +1,12 @@
 package de.htwg.se.yooloo.model
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.{ Matchers, WordSpec }
 
 /**
-  * Created by svenb on 11.04.2017.
-  */
+ * Created by svenb on 11.04.2017.
+ */
 class CardSetSpec extends WordSpec with Matchers {
   //TODO: Klären, ob Tests je Element verschachteln
-
-
 
   "Calling addToCardSet(1)" should {
     "create a List(1)" in {
@@ -27,7 +25,6 @@ class CardSetSpec extends WordSpec with Matchers {
       assert(set1.cardSet == List(2, 1))
     }
   }
-
 
   "Calling addToCardSet(1) addToCardSet(15) " should {
     "create a List(1)..because 15 shall not be added to the List" in {

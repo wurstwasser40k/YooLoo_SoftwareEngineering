@@ -5,8 +5,6 @@ package de.htwg.se.yooloo.model
  */
 case class Player(namePlayer: String) {
 
-  //ToDo: jeder Player besitzt ein CardSet, dieses dann durch Methode PlayingField.makeAMove() iterieren
-
   var cards = new CardSet
 
   //Langfristige Idee: Punkte mit Liste/Vector festhalten
@@ -16,6 +14,7 @@ case class Player(namePlayer: String) {
   def addPoints(points: Int): Unit = {
     println(this + " receives " + points + " points")
     this.totalPoints = this.totalPoints + points
+    this.pointsForOneRound = this.pointsForOneRound + points
   }
 
 }

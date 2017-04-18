@@ -36,16 +36,15 @@ case class CardSet() {
         val input = scala.io.StdIn.readInt()
         addToCardset(input)
       } catch {
-        case e: NumberFormatException => println("You have to  type an Int-value...String is not allowed")
+        case e: NumberFormatException => println("You have to type an Int-value...String is not allowed")
         case oe: Exception => println("Other Exception")
       }
     }
   }
 
   /**
-   * In case we want to implememt an AI, this method sorts the cardDeck
+   * This method sorts the cardDeck automatically (by random)
    */
-
   def sortCardSetAutomatically: Unit = {
 
     val myRandStream = new Random()
@@ -60,12 +59,6 @@ case class CardSet() {
       }
     }
 
-    //  if(myRandStream.nextDouble()>=0.5){
-    //     cardSet = 10 :: 9 :: 8 :: 7 :: 6 :: 5 :: 4 :: 3 :: 2 :: 1 :: cardSet
-    //  }
-    //  if(myRandStream.nextDouble()<=0.5 ){
-    //   cardSet = 7 :: 8 :: 9 :: 10 :: 6 :: 5 :: 4 :: 1 :: 2 :: 3 :: cardSet
-    //  }
 
     println(this.toString + "has been sorted automatically")
   }

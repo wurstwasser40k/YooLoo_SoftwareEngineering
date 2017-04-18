@@ -1,21 +1,27 @@
 package de.htwg.se.yooloo.tui
 
-import de.htwg.se.yooloo.model.{Player, PlayingField}
+import de.htwg.se.yooloo.model.{ Player, PlayingField }
 
 /**
-  * Created by Vk on 16.04.2017.
-  */
+ * Created by Vk on 16.04.2017.
+ */
 object Tui extends App {
 
-  /**TODO:
-    * -   Klasse fertig bauen
-    * -   dann Klassendeklaration ändern in  class
-    *
-    */
+  /**
+   * TODO:
+   * -   Klasse fertig bauen
+   * -   dann Klassendeklaration ändern in  class
+   *
+   */
 
-  var currentField = initPlayers()
-  sortCards()
-  printTui()
+  var playingField = initPlayers()
+
+  playingField.makeAMove()
+
+
+
+
+
 
   def initPlayers() = {
     println("Player 1 -")
@@ -35,11 +41,5 @@ object Tui extends App {
     scala.io.StdIn.readLine()
   }
 
-  def sortCards() = {
-    //cardSet jedes Players sortieren
-  }
 
-  def printTui() = {
-    //TODO: Ausgabe der Ergebnis auf Console
-  }
 }

@@ -27,7 +27,7 @@ class PlayingFieldSpec extends WordSpec with Matchers {
         set1.cardSet = List(5, 4, 3, 2, 1, 10, 9, 8, 7, 6)
         set2.cardSet = List(5, 4, 3, 2, 1, 10, 9, 8, 7, 6)
         set3.cardSet = List(5, 10, 1, 2, 3, 4, 6, 8, 7, 9)
-        playingField.makeAMove(set1, set2, set3)
+        playingField.makeAMove()
 
         player1.totalPoints should be(0)
         player2.totalPoints should be(0)
@@ -49,7 +49,6 @@ class PlayingFieldSpec extends WordSpec with Matchers {
       player2.totalPoints should be(0)
       player3.totalPoints should be(0)
 
-      playingField.pointsInThePot should be(0)
 
     }
 
