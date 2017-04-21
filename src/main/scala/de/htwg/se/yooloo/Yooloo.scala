@@ -35,8 +35,5 @@ object Yooloo {
     println(player2.namePlayer + " has points (in total):" + player2.totalPoints)
     println(player3.namePlayer + " has points (in total):" + player3.totalPoints)
 
-
-
-
   }
 }

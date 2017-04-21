@@ -1,27 +1,20 @@
 package de.htwg.se.yooloo.model
 
 /**
-  * Created by svenb on 29.03.2017.
-  */
-case class PlayingField(playerList: List[Player]) {
+ * Created by svenb on 29.03.2017.
+ */
+case class PlayingField(player1: Player, player2: Player, player3: Player) {
 
   var pointsInThePot: Int = 0
 
-
   /**
-    * One full move where the 10 cards are sorted and points are evaluated
-    */
+   * One full move where the 10 cards are sorted and points are evaluated
+   */
   def makeAMove(): Unit = {
-
-    playerList.foreach((i:Player)=>println(i))
-    
-
-
 
     val set1 = player1.cards
     val set2 = player2.cards
     val set3 = player3.cards
-
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
     println("Player 1 - sort your cardDeck")
@@ -33,26 +26,24 @@ case class PlayingField(playerList: List[Player]) {
     println("Player 3 - sort your cardDeck")
     set3.sortCardSetAutomatically
 
-
-
-    evaluatePoints(set1.cardSet, set2.cardSet, set3.cardSet)
+    evaluatePoints(player1.cards.cardSet, set2.cardSet, set3.cardSet)
 
     endOfRound()
 
   }
 
   /**
-    * Evaluates the points for 3 cardsets for each of the 10 cards
-    * Prints out something like:
-    * "Player(b) receives 1 points"
-    * "Player(a) receives 2 points"
-    * ...
-    * "Player(c) receives 10 points"
-    *
-    * @param set1
-    * @param set2
-    * @param set3
-    */
+   * Evaluates the points for 3 cardsets for each of the 10 cards
+   * Prints out something like:
+   * "Player(b) receives 1 points"
+   * "Player(a) receives 2 points"
+   * ...
+   * "Player(c) receives 10 points"
+   *
+   * @param set1
+   * @param set2
+   * @param set3
+   */
   def evaluatePoints(set1: List[Int], set2: List[Int], set3: List[Int]) = {
 
     println("Set1:" + set1)
@@ -79,23 +70,22 @@ case class PlayingField(playerList: List[Player]) {
   }
 
   /**
-    * Takes 3 cards into account and decides which card wins.
-    * In case there is a clear winner --> the respective player gets the respective amount of points
-    * and the variable pointsInThePott is set  to 0 again.
-    * In case there is no winner the variable pointsInThePott is not set to 0...so the amount of points in the next
-    * round will be higher (c.f. method evaluatePoints)
-    *
-    * @param card1
-    * @param card2
-    * @param card3
-    * @param pointValue
-    */
+   * Takes 3 cards into account and decides which card wins.
+   * In case there is a clear winner --> the respective player gets the respective amount of points
+   * and the variable pointsInThePott is set  to 0 again.
+   * In case there is no winner the variable pointsInThePott is not set to 0...so the amount of points in the next
+   * round will be higher (c.f. method evaluatePoints)
+   *
+   * @param card1
+   * @param card2
+   * @param card3
+   * @param pointValue
+   */
   def decideWhoGetsThePoint(card1: Int, card2: Int, card3: Int, pointValue: Int) = {
 
     println("Player 1 has card value " + card1 + " Player 2 has card value " + card2 + " Player 3 has card " + card3)
     println("Press any key")
     scala.io.StdIn.readLine()
-
 
     //case 1: One player clearly wins the round
     if (card1 > card2 && card1 > card3) {
@@ -132,7 +122,6 @@ case class PlayingField(playerList: List[Player]) {
 
   }
 
-
   def endOfRound() = {
 
     println("The round is finished")
@@ -145,7 +134,6 @@ case class PlayingField(playerList: List[Player]) {
     player3.pointsForOneRound = 0
 
     var input: Char = ' '
-
 
     do {
       println("Do you want to play another round - hit y for yes or n for no")
@@ -160,19 +148,11 @@ case class PlayingField(playerList: List[Player]) {
         case e: StringIndexOutOfBoundsException => println("Only hitting enter is not allowed as well")
         case e2: Exception => println("Other exception")
 
-
       }
 
-    }
-    while (
-
-      input != 'n' && input != 'y'
-
-    )
-
+    } while (input != 'n' && input != 'y')
 
   }
-
 
   def playOneRound: Unit = {
     //TODO: Ruft zehn mal über eine for/foreach die Methode makeAMove() auf

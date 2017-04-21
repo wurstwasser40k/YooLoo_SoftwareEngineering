@@ -15,7 +15,6 @@ case class CardSet() {
 
   def addToCardset(input: Int) {
 
-
     //if wrong userinput
     if (input <= 0 || input >= 11 || cardSet.contains(input) == true) {
       println("Wrong User-Input: Card has to be between 1-10, or the card you wanted to add is already " +
@@ -60,7 +59,6 @@ case class CardSet() {
         case oe: Exception => println("Other Exception")
       }
     }
-
 
     println(this.toString + "has been sorted automatically")
   }

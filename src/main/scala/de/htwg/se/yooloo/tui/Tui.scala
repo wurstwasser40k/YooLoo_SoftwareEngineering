@@ -22,11 +22,6 @@ object Tui extends App {
 
   playingField.makeAMove()
 
-
-
-
-
-
   def initPlayers() = {
     println("Player 1 -")
     var player1 = new Player(enterPlayerName())
@@ -44,6 +39,5 @@ object Tui extends App {
     println("Enter your name: ")
     scala.io.StdIn.readLine()
   }
-
 
 }
