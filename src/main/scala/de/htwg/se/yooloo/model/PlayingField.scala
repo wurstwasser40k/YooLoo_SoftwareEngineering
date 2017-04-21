@@ -3,7 +3,7 @@ package de.htwg.se.yooloo.model
 /**
   * Created by svenb on 29.03.2017.
   */
-case class PlayingField(player1: Player, player2: Player, player3: Player) {
+case class PlayingField(playerList: List[Player]) {
 
   var pointsInThePot: Int = 0
 
@@ -12,6 +12,11 @@ case class PlayingField(player1: Player, player2: Player, player3: Player) {
     * One full move where the 10 cards are sorted and points are evaluated
     */
   def makeAMove(): Unit = {
+
+    playerList.foreach((i:Player)=>println(i))
+    
+
+
 
     val set1 = player1.cards
     val set2 = player2.cards
