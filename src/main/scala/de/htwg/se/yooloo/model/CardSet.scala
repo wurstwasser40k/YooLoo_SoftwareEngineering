@@ -6,13 +6,15 @@ import scala.util.Random
  * Created by svenb on 29.03.2017.
  */
 
+//TODO: Alles println ist muss in die view/TUI
 case class CardSet() {
 
+  //TODO:cardSet als Klassen-Parameter setzen (in Konstruktor)...wenn etwas geändert wird, dann neu erzeugen
   var cardSet: List[Int] = Nil
   //the cards in the set
 
   def addToCardset(input: Int) {
-    //TODO: Test, dass man Werte zwischen 1 und 10 und keine Redundanz
+
 
     //if wrong userinput
     if (input <= 0 || input >= 11 || cardSet.contains(input) == true) {

@@ -20,7 +20,7 @@ case class PlayingField(player1: Player, player2: Player, player3: Player) {
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
     println("Player 1 - sort your cardDeck")
-    set1.sortCardSetAutomatically
+    set1.sortCardSet
 
     println("Player 2 - sort your cardDeck")
     set2.sortCardSetAutomatically

@@ -5,6 +5,10 @@ import de.htwg.se.yooloo.model.{ Player, PlayingField }
 /**
  * Created by Vk on 16.04.2017.
  */
+
+//TODO: Zwei Spieler mit einer Karte muss machbar sein, für Testzwecke (Nach unten Skalierbarkeit)
+//TODO: Strings sammeln, und gebündelt als println ausgeben
+//Muss Klasse sein, extends App muss raus
 object Tui extends App {
 
   /**
