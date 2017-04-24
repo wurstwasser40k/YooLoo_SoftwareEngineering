@@ -89,11 +89,11 @@ case class PlayingField(listPlayer: List[Player]) {
 
     println("The round is finished")
 
-    listPlayer.foreach((player: Player) => (player.pointsForOneRound = 0))
+
     listPlayer.foreach((player: Player) => (println(player.namePlayer +" points for this round: " +player.pointsForOneRound)))
     listPlayer.foreach((player: Player) => (println(player.namePlayer +" total points: " +player.totalPoints)))
 
-
+    listPlayer.foreach((player: Player) => (player.pointsForOneRound = 0))
     var input: Char = ' '
 
     do {
