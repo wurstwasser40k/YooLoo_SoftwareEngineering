@@ -14,27 +14,27 @@ case class PlayingField(listPlayer: List[Player]) {
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
     listPlayer.head.cards.sortCardSet
 
-    listPlayer.foreach((player: Player) => (if (player != listPlayer.head) player.cards.sortCardSetAutomatically))
+    listPlayer.foreach((player: Player) => if (player != listPlayer.head) player.cards.sortCardSetAutomatically)
 
-    evaluatePoints(listPlayer)
+    evaluatePoints()
 
     endOfRound()
 
   }
 
 
-  def evaluatePoints(listPlayer:List[Player]): Unit = {
+  def evaluatePoints(): Unit = {
 
-    listPlayer.foreach((player: Player) => (println("Set from " +player.namePlayer+": "+player.cards.cardSet)))
+    listPlayer.foreach((player: Player) => println("Set from " + player.namePlayer + ": " + player.cards.cardSet))
 
-    val cardSetLength:Int = listPlayer(0).cards.cardSet.length
+    val cardSetLength: Int = listPlayer.head.cards.cardSet.length
     var i = 0
     //variable that runs through the arrays
     var pointValue = 1 //initially the point value is 1...then 2,3,...10
     while (i < cardSetLength) {
 
       pointsInThePot = pointsInThePot + pointValue
-      decideWhoGetsThePoint(listPlayer, pointsInThePot, i)
+      decideWhoGetsThePoint(pointsInThePot, i)
 
       //first pointValue = 1, second pointValue = 2,..., last pointValue=10
       pointValue = pointValue + 1
@@ -43,14 +43,14 @@ case class PlayingField(listPlayer: List[Player]) {
   }
 
   //decides who gets points
-  def decideWhoGetsThePoint(listPlayer: List[Player], pointValue: Int, i: Int): Unit = {
+  def decideWhoGetsThePoint( pointValue: Int, i: Int): Unit = {
 
     println("decideWhoGetsThePoint() startet jetzt")
     scala.io.StdIn.readLine()
 
     var currentListCards: List[Int] = Nil
 
-    listPlayer.foreach((player: Player) => (currentListCards = (player.cards.cardSet(i)) :: currentListCards))
+    listPlayer.foreach((player: Player) => currentListCards = player.cards.cardSet(i) :: currentListCards)
     var dupCards: List[Int] = Nil
     dupCards = currentListCards
 
@@ -70,7 +70,7 @@ case class PlayingField(listPlayer: List[Player]) {
       var largesVal: Int = currentListCards.max
       var winner: Player = Player("")
 
-      listPlayer.foreach((player: Player) => (if (player.cards.cardSet(i) == largesVal) winner = player))
+      listPlayer.foreach((player: Player) => if (player.cards.cardSet(i) == largesVal) winner = player)
       winner.addPoints(pointValue)
       pointsInThePot = 0
     }
@@ -85,10 +85,10 @@ case class PlayingField(listPlayer: List[Player]) {
     println("The round is finished")
 
 
-    listPlayer.foreach((player: Player) => (println(player.namePlayer +" points for this round: " +player.pointsForOneRound)))
-    listPlayer.foreach((player: Player) => (println(player.namePlayer +" total points: " +player.totalPoints)))
+    listPlayer.foreach((player: Player) => println(player.namePlayer + " points for this round: " + player.pointsForOneRound))
+    listPlayer.foreach((player: Player) => println(player.namePlayer + " total points: " + player.totalPoints))
 
-    listPlayer.foreach((player: Player) => (player.pointsForOneRound = 0))
+    listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
     var input: Char = ' '
 
     do {
