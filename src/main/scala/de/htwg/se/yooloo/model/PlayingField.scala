@@ -12,9 +12,9 @@ case class PlayingField(listPlayer: List[Player]) {
   def makeAMove(): Unit = {
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
-    listPlayer(0).cards.sortCardSet
+    listPlayer.head.cards.sortCardSet
 
-    listPlayer.foreach((player: Player) => (if (player != listPlayer(0)) player.cards.sortCardSetAutomatically))
+    listPlayer.foreach((player: Player) => (if (player != listPlayer.head) player.cards.sortCardSetAutomatically))
 
     evaluatePoints(listPlayer)
 
@@ -78,11 +78,6 @@ case class PlayingField(listPlayer: List[Player]) {
     /*case2: No winner
     add points to pot
      */
-    else {
-
-    }
-
-
   }
 
   def endOfRound(): Any = {
@@ -112,10 +107,5 @@ case class PlayingField(listPlayer: List[Player]) {
       }
 
     } while (input != 'n' && input != 'y')
-
-  }
-
-  def playOneRound: Unit = {
-    //TODO: Ruft zehn mal über eine for/foreach die Methode makeAMove() auf
   }
 }
