@@ -2,7 +2,7 @@ package de.htwg.se.yooloo.model
 
 
 //change to playerList: List[Player]
-case class PlayingField(player1: Player, player2: Player, player3: Player) {
+case class PlayingField(listPlayer: List[Player]) {
 
   var pointsInThePot: Int = 0
 
@@ -11,58 +11,39 @@ case class PlayingField(player1: Player, player2: Player, player3: Player) {
     */
   def makeAMove(): Unit = {
 
-    val set1 = player1.cards
-    val set2 = player2.cards
-    val set3 = player3.cards
-
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
-    println("Player 1 - sort your cardDeck")
-    set1.sortCardSet
+    listPlayer(0).cards.sortCardSet
 
-    println("Player 2 - sort your cardDeck")
-    set2.sortCardSetAutomatically
+    listPlayer.foreach((player: Player) => (if (player != listPlayer(0)) player.cards.sortCardSetAutomatically))
 
-    println("Player 3 - sort your cardDeck")
-    set3.sortCardSetAutomatically
-
-    evaluatePoints(player1.cards.cardSet, set2.cardSet, set3.cardSet)
+    evaluatePoints(listPlayer)
 
     endOfRound()
 
   }
 
 
-  def evaluatePoints(set1: List[Int], set2: List[Int], set3: List[Int]) = {
+  def evaluatePoints(listPlayer:List[Player]): Unit = {
 
+    listPlayer.foreach((player: Player) => (println("Set from " +player.namePlayer+": "+player.cards.cardSet)))
 
-    println("Set1:" + set1)
-    println("Set2:" + set2)
-    println("Set3:" + set3)
-
-    //convert Lists to Array, because accessing a value in an array is way more comfortable
-    val set1Array: Array[Int] = (set1).toArray
-    val set2Array: Array[Int] = (set2).toArray
-    val set3Array: Array[Int] = (set3).toArray
-
+    val cardSetLength:Int = listPlayer(0).cards.cardSet.length
     var i = 0
     //variable that runs through the arrays
     var pointValue = 1 //initially the point value is 1...then 2,3,...10
-    while (i <= 9) {
+    while (i < cardSetLength) {
 
       pointsInThePot = pointsInThePot + pointValue
-      //Added hilfsliste
-      val listPlayer: List[Player] = List(player1, player2, player3)
       decideWhoGetsThePoint(listPlayer, pointsInThePot, i)
 
       //first pointValue = 1, second pointValue = 2,..., last pointValue=10
       pointValue = pointValue + 1
       i = i + 1
     }
-
   }
 
-  //decides who wins
-  def decideWhoGetsThePoint(listPlayer: List[Player], pointValue: Int, i: Int) = {
+  //decides who gets points
+  def decideWhoGetsThePoint(listPlayer: List[Player], pointValue: Int, i: Int): Unit = {
 
     println("decideWhoGetsThePoint() startet jetzt")
     scala.io.StdIn.readLine()
@@ -104,16 +85,14 @@ case class PlayingField(player1: Player, player2: Player, player3: Player) {
 
   }
 
-  def endOfRound() = {
+  def endOfRound(): Any = {
 
     println("The round is finished")
-    println(player1.namePlayer + " has total points:" + player1.totalPoints + " ...and for this specific round: " + player1.pointsForOneRound)
-    println(player2.namePlayer + " has total points:" + player2.totalPoints + " ...and for this specific round: " + player2.pointsForOneRound)
-    println(player3.namePlayer + " has total points:" + player3.totalPoints + " ...and for this specific round: " + player3.pointsForOneRound)
 
-    player1.pointsForOneRound = 0
-    player2.pointsForOneRound = 0
-    player3.pointsForOneRound = 0
+    listPlayer.foreach((player: Player) => (player.pointsForOneRound = 0))
+    listPlayer.foreach((player: Player) => (println(player.namePlayer +" points for this round: " +player.pointsForOneRound)))
+    listPlayer.foreach((player: Player) => (println(player.namePlayer +" total points: " +player.totalPoints)))
+
 
     var input: Char = ' '
 

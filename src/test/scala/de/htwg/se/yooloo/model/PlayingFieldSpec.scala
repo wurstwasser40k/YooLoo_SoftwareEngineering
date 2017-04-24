@@ -1,10 +1,8 @@
 package de.htwg.se.yooloo.model
 
-import org.scalatest.{ Matchers, WordSpec }
-
 /**
  * Created by svenb on 17.04.2017.
- */
+
 //TODO: Rewrite TestSpecs for Playingfield.decidewhogetsthepoints
 class PlayingFieldSpec extends WordSpec with Matchers {
 
@@ -89,3 +87,4 @@ class PlayingFieldSpec extends WordSpec with Matchers {
   */
 
 }
+*/
