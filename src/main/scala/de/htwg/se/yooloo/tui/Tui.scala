@@ -9,7 +9,7 @@ import de.htwg.se.yooloo.model.{Player, PlayingField}
 //TODO: Zwei Spieler mit einer Karte muss machbar sein, für Testzwecke (Nach unten Skalierbarkeit)
 //TODO: Strings sammeln, und gebündelt als println ausgeben
 //Muss Klasse sein, extends App muss raus
-object Tui extends App {
+class Tui {
 
   /**
     * TODO:
@@ -23,7 +23,7 @@ object Tui extends App {
   playingField.makeAMove()
 
 
-  def initPlayers() = {
+  def initPlayers(): PlayingField = {
     println("Player 1 -")
 
     var player1 = new Player(enterPlayerName())
@@ -40,7 +40,7 @@ object Tui extends App {
   }
 
 
-  def enterPlayerName() = {
+  def enterPlayerName(): String = {
     println("Enter your name: ")
     scala.io.StdIn.readLine()
   }

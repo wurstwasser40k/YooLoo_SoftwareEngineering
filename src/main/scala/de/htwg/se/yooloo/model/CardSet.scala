@@ -16,7 +16,7 @@ case class CardSet() {
   def addToCardset(input: Int) {
 
     //if wrong userinput
-    if (input <= 0 || input >= 11 || cardSet.contains(input) == true) {
+    if (input <= 0 || input >= 11 || cardSet.contains(input)) {
       println("Wrong User-Input: Card has to be between 1-10, or the card you wanted to add is already " +
         " is already inside your cardset -> Choose another card!")
 
@@ -29,7 +29,7 @@ case class CardSet() {
     }
   }
 
-  def sortCardSet: Unit = {
+  def sortCardSet(): Unit = {
     println("Which card do you want to put first?")
 
     while (cardSet.length <= 9) {
@@ -46,7 +46,7 @@ case class CardSet() {
   /**
    * This method sorts the cardDeck automatically (by random)
    */
-  def sortCardSetAutomatically: Unit = {
+  def sortCardSetAutomatically(): Unit = {
 
     val myRandStream = new Random()
 
