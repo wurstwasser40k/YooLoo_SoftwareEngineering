@@ -6,24 +6,21 @@ import de.htwg.se.yooloo.model.{Player, PlayingField}
   * Created by Vk on 16.04.2017.
   */
 
-//TODO: Zwei Spieler mit einer Karte muss machbar sein, für Testzwecke (Nach unten Skalierbarkeit)
 //TODO: Strings sammeln, und gebündelt als println ausgeben
-//Muss Klasse sein, extends App muss raus
+/**
+  * ***** Info ****
+  * Tui is the concrete subject and has to implement Controller.update()
+  * Observable.update() obtains state information from the subject and acts on that state
+  * ****  Info ****
+  */
 object Tui extends App {
-
-  /**
-    * TODO:
-    * -   Klasse fertig bauen
-    * -   dann Klassendeklaration ändern in  class
-    *
-    */
 
   var playingField = initPlayers()
 
-  playingField.makeAMove()
+  playingField.makeAMove(playingField.listPlayer)
 
 
-  def initPlayers() = {
+  def initPlayers(): PlayingField = {
     println("Player 1 -")
 
     var player1 = new Player(enterPlayerName())
@@ -40,8 +37,38 @@ object Tui extends App {
   }
 
 
-  def enterPlayerName() = {
+  def enterPlayerName(): String = {
     println("Enter your name: ")
     scala.io.StdIn.readLine()
   }
+
+  def endOfRound(): Any = {
+
+    println("The round is finished")
+
+
+    playingField.listPlayer.foreach((player: Player) => println(player.namePlayer + " points for this round: " + player.pointsForOneRound))
+    playingField.listPlayer.foreach((player: Player) => println(player.namePlayer + " total points: " + player.totalPoints))
+
+    playingField.listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
+    var input: Char = ' '
+
+    do {
+      println("Do you want to play another round - hit y for yes or n for no")
+      try {
+        input = scala.io.StdIn.readChar()
+        input match {
+          case 'n' => println("Thanks for playing YooLoo - Goodbye")
+          case 'y' => playingField.makeAMove(playingField.listPlayer)
+          case _ => println("wrong input - please type n or y")
+        }
+      } catch {
+        case e: StringIndexOutOfBoundsException => println("Only hitting enter is not allowed as well")
+        case e2: Exception => println("Other exception")
+
+      }
+
+    } while (input != 'n' && input != 'y')
+  }
+
 }

@@ -1,5 +1,7 @@
 package de.htwg.se.yooloo.model
 
+import de.htwg.se.yooloo.tui.Tui
+
 
 //change to playerList: List[Player]
 case class PlayingField(listPlayer: List[Player]) {
@@ -9,7 +11,8 @@ case class PlayingField(listPlayer: List[Player]) {
   /**
     * One full move where the 10 cards are sorted and points are evaluated
     */
-  def makeAMove(): Unit = {
+  //Diese Methode verändert den Zustand von listPlayer! in Controller?
+  def makeAMove(listPlayer: List[Player]): Unit = {
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
     listPlayer.head.cards.sortCardSet
@@ -18,8 +21,7 @@ case class PlayingField(listPlayer: List[Player]) {
 
     evaluatePoints()
 
-    endOfRound()
-
+    Tui.endOfRound()
   }
 
 
@@ -78,34 +80,5 @@ case class PlayingField(listPlayer: List[Player]) {
     /*case2: No winner
     add points to pot
      */
-  }
-
-  def endOfRound(): Any = {
-
-    println("The round is finished")
-
-
-    listPlayer.foreach((player: Player) => println(player.namePlayer + " points for this round: " + player.pointsForOneRound))
-    listPlayer.foreach((player: Player) => println(player.namePlayer + " total points: " + player.totalPoints))
-
-    listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
-    var input: Char = ' '
-
-    do {
-      println("Do you want to play another round - hit y for yes or n for no")
-      try {
-        input = scala.io.StdIn.readChar()
-        input match {
-          case 'n' => println("Thanks for playing YooLoo - Goodbye")
-          case 'y' => makeAMove()
-          case _ => println("wrong input - please type n or y")
-        }
-      } catch {
-        case e: StringIndexOutOfBoundsException => println("Only hitting enter is not allowed as well")
-        case e2: Exception => println("Other exception")
-
-      }
-
-    } while (input != 'n' && input != 'y')
   }
 }
