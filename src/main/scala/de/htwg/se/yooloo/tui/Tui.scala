@@ -1,47 +1,27 @@
 package de.htwg.se.yooloo.tui
 
-import de.htwg.se.yooloo.model.{Player, PlayingField}
+import de.htwg.se.yooloo.controller.Controller
+import de.htwg.util.IObserver
 
-/**
-  * Created by Vk on 16.04.2017.
+//TODO: Strings sammeln, und gebündelt als println ausgeben
+  /**
+  * ***** Info ****
+  * Tui is the concrete subject and has to implement Controller.update()
+  * Observable.update() obtains state information from the subject and acts on that state
+  * ****  Info ****
   */
 
-//TODO: Zwei Spieler mit einer Karte muss machbar sein, für Testzwecke (Nach unten Skalierbarkeit)
-//TODO: Strings sammeln, und gebündelt als println ausgeben
-//Muss Klasse sein, extends App muss raus
-class Tui {
-
-  /**
-    * TODO:
-    * -   Klasse fertig bauen
-    * -   dann Klassendeklaration ändern in  class
-    *
-    */
-
-  var playingField = initPlayers()
-
-  playingField.makeAMove()
+class Tui(controller: Controller) extends IObserver {
 
 
-  def initPlayers(): PlayingField = {
-    println("Player 1 -")
-
-    var player1 = new Player(enterPlayerName())
-    println("Player 2 -")
-
-    var player2 = new Player(enterPlayerName())
-    println("Player 3 - ")
-
-    var player3 = new Player(enterPlayerName())
-
-    val listPlayer = List(player1, player2, player3)
-
-    PlayingField(listPlayer)
-  }
 
 
-  def enterPlayerName(): String = {
-    println("Enter your name: ")
-    scala.io.StdIn.readLine()
-  }
+
+  //playingField.makeAMove()
+
+  //TODO: Aktivitäten sammeln in processInputLine(input:String)
+
+ //Hier steht später die playingFieldToString via controller
+  override def update(): Unit = "Hier steht künftig der neue Zwischenstand des Spieles."
+
 }

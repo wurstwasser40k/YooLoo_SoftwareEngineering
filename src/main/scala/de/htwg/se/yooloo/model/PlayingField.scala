@@ -1,7 +1,5 @@
 package de.htwg.se.yooloo.model
 
-
-//change to playerList: List[Player]
 case class PlayingField(listPlayer: List[Player]) {
 
   var pointsInThePot: Int = 0
@@ -9,6 +7,7 @@ case class PlayingField(listPlayer: List[Player]) {
   /**
     * One full move where the 10 cards are sorted and points are evaluated
     */
+  //Diese Methode muss in Controller?
   def makeAMove(): Unit = {
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
@@ -80,6 +79,8 @@ case class PlayingField(listPlayer: List[Player]) {
      */
   }
 
+
+  //Diese Methode gehört in Tui
   def endOfRound(): Any = {
 
     println("The round is finished")
@@ -107,5 +108,9 @@ case class PlayingField(listPlayer: List[Player]) {
       }
 
     } while (input != 'n' && input != 'y')
+  }
+
+  override def toString: String = {
+   "Hier steht mein aktueller Spielstand!!"
   }
 }

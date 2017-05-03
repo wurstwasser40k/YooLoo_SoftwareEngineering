@@ -1,14 +1,25 @@
 package de.htwg.se.yooloo.controller
 
-/**
-  * Created by Vk on 01.05.2017.
-  */
-class Controller {
+import de.htwg.util.Observable
 
-  // newCardSet
-  // sortCardSet
-  // makeAMove
-  // decideWhoGetsThePoint
+//muss ein Objekt playingField im Konstruktur übergeben bekommen, das wird dan befüllt
+class Controller () extends Observable {
+
+  // 1. Konstruktor-Objekt mit player befüllen
+
+  // 2. createCardSet
+ /* def newCardSet(): List[CardSet] ={
+
+
+    notifyObservers
+  }
+  */
+  // 3. sortCardSet
+
+
+  // 4. makeAMove
+
+  // 5. decideWhoGetsThePoint
 
 
 

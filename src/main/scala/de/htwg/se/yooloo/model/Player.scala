@@ -16,5 +16,4 @@ case class Player(namePlayer: String) {
     this.totalPoints = this.totalPoints + points
     this.pointsForOneRound = this.pointsForOneRound + points
   }
-
 }

@@ -1,15 +1,17 @@
 package de.htwg.se.yooloo
 
+import de.htwg.se.yooloo.controller.Controller
 import de.htwg.se.yooloo.tui.Tui
 
-/**
- * Created by Vk on 07.04.2017.
- */
-
-//TODO:Muss NUR die TUI/GUI starten!!
 //initialisiert das Modell und den Controller
 object Yooloo {
+
+  val controller = new Controller()
+  val tui = new Tui(controller)
+  controller.notifyObservers
+
   def main(args: Array[String]): Unit = {
-  val tui = new Tui
+    tui.initPlayers()
+    //TODO: do - while Schleife mit processInputLine()
   }
 }
