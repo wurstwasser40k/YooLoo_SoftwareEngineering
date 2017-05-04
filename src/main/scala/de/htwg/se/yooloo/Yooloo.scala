@@ -41,7 +41,7 @@ object Yooloo {
 
 
 
-    //now: add cards
+   //TODO: Wie kommt man von hier zu addCards????
     do{
       input=scala.io.StdIn.readLine()
 
