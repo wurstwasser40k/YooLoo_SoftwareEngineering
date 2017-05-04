@@ -17,4 +17,6 @@ case class Player(namePlayer: String) {
     this.pointsForOneRound = this.pointsForOneRound + points
   }
 
+
+
 }

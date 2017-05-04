@@ -1,11 +1,11 @@
 package de.htwg.se.yooloo.model
 
-import de.htwg.se.yooloo.tui.Tui
-
 
 //change to playerList: List[Player]
-case class PlayingField(listPlayer: List[Player]) {
+case class PlayingField(var listPlayer: List[Player]) {
 
+
+  var currentPlayer:Player =listPlayer.head
   var pointsInThePot: Int = 0
 
   /**
@@ -21,7 +21,8 @@ case class PlayingField(listPlayer: List[Player]) {
 
     evaluatePoints()
 
-    Tui.endOfRound()
+    listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
+    //Tui.endOfRound()
   }
 
 
