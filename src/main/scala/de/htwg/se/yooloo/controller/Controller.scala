@@ -31,10 +31,12 @@ class Controller(playingField: PlayingField) extends Observable {
   def addCard(input: String): Unit = {
     //1. add to CardSet
     if (checkCardSet(input.toInt)) {
-      getCurrentPlayer.cards.addToCardset(input.toInt)
+      getCurrentPlayer.cards.cardSet = input.toInt :: getCurrentPlayer.cards.cardSet
     }
 
     notifyObservers
+
+
 
     //2. current Playerr
     if (getCurrentPlayer.cards.cardSet.length >= 10) {
@@ -44,7 +46,8 @@ class Controller(playingField: PlayingField) extends Observable {
   }
 
   //TODO: ÄNDERN!!!!
-  def makeAMove: Unit = {
+
+/*  def makeAMove: Unit = {
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
     playingField.listPlayer.head.cards.sortCardSet
 
@@ -57,6 +60,6 @@ class Controller(playingField: PlayingField) extends Observable {
 
     notifyObservers
   }
-
+*/
 
 }

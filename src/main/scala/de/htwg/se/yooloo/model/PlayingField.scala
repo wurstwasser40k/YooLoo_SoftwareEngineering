@@ -12,6 +12,7 @@ case class PlayingField(var listPlayer: List[Player]) {
     * One full move where the 10 cards are sorted and points are evaluated
     */
   //Diese Methode verändert den Zustand von listPlayer! in Controller?
+  /*
   def makeAMove(listPlayer: List[Player]): Unit = {
 
     //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
@@ -24,6 +25,7 @@ case class PlayingField(var listPlayer: List[Player]) {
     listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
     //Tui.endOfRound()
   }
+  */
 
 
   def evaluatePoints(): Unit = {

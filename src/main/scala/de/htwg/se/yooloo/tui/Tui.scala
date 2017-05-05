@@ -15,6 +15,9 @@ import de.htwg.se.yooloo.util.Observer
   * ****  Info ****
   */
 class Tui(controller: Controller)  extends Observer {
+
+  controller.add(this)
+
   /*
     var playingField = initPlayers()
 
@@ -96,8 +99,7 @@ class Tui(controller: Controller)  extends Observer {
   def enterCard(input: String): Unit ={
     input match {
       case "1" | "2"| "3" | "4" | "5" | "6" | "7" | "8"| "9"  | "10" => controller.addCard(input)
-      case "y" => controller.makeAMove
-      case _ => println("wrong input - please type n or y")
+      case _ => println("wrong input - please type a number between 1 and 10")
     }
   }
 

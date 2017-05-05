@@ -15,7 +15,7 @@ object Yooloo {
 
 
   //Model-class
-  val playingField = new PlayingField(List(new Player("A"),new Player("B"),new Player("C")))  //TODO: mit Methode initPlayer() lösen
+  val playingField = new PlayingField(List(Player("A")))  //TODO: mit Methode initPlayer() lösen
   //conmtroller-class
   val controller =  new Controller(playingField)
   //view-class
@@ -29,11 +29,13 @@ object Yooloo {
 
     var input:String=""
 
-//Enter Playernames -> Players are created until the user hits f for finish
+
+
     do{
       input=scala.io.StdIn.readLine()
 
       tui.enterplayerNames(input)
+
 
     }while(input!="f")
 
