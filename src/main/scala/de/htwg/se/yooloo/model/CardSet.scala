@@ -13,7 +13,7 @@ case class CardSet() {
   var cardSet: List[Int] = Nil
   //the cards in the set
 
-  def addToCardset(input: Int) {
+ def addToCardset(input: Int) {
 
     //if wrong userinput
     if (input <= 0 || input >= 11 || cardSet.contains(input) == true) {
@@ -29,6 +29,7 @@ case class CardSet() {
     }
   }
 
+/*
   def sortCardSet: Unit = {
     println("Which card do you want to put first?")
 
@@ -42,6 +43,7 @@ case class CardSet() {
       }
     }
   }
+  */
 
   /**
    * This method sorts the cardDeck automatically (by random)

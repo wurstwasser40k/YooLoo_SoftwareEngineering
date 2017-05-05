@@ -95,7 +95,7 @@ class Tui(controller: Controller)  extends Observer {
 
   def enterCard(input: String): Unit ={
     input match {
-      case "1" | "2"| "3" | "4" | "5" | "6" | "7" | "8"| "9"  | "10" => controller.addCard
+      case "1" | "2"| "3" | "4" | "5" | "6" | "7" | "8"| "9"  | "10" => controller.addCard(input)
       case "y" => controller.makeAMove
       case _ => println("wrong input - please type n or y")
     }

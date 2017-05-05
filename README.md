@@ -1,3 +1,5 @@
+[![Travis](https://travis-ci.org/wurstwasser40k/YooLoo_SoftwareEngineering.svg?branch=master)
+
 htwg-scala-seed
 =========================
 
