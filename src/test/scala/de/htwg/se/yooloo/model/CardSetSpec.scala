@@ -8,6 +8,7 @@ import org.scalatest.{ Matchers, WordSpec }
 class CardSetSpec extends WordSpec with Matchers {
   //TODO: Klären, ob Tests je Element verschachteln
 
+  /*
   "Calling addToCardSet(1)" should {
     "create a List(1)" in {
       val set1 = CardSet()
@@ -55,5 +56,5 @@ class CardSetSpec extends WordSpec with Matchers {
       assert(set1.cardSet == List(1))
     }
   }
-
+*/
 }

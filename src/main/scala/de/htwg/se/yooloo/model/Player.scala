@@ -12,7 +12,6 @@ case class Player(namePlayer: String) {
   var totalPoints: Int = 0 //TODO: Ist var okay, not immutable?
 
   def addPoints(points: Int): Unit = {
-    println(this + " receives " + points + " points")
     this.totalPoints = this.totalPoints + points
     this.pointsForOneRound = this.pointsForOneRound + points
   }

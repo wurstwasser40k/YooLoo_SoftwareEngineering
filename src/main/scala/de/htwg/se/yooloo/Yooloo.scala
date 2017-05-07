@@ -8,14 +8,14 @@ import de.htwg.se.yooloo.tui.Tui
  * Created by Vk on 07.04.2017.
  */
 
-//TODO:Muss NUR die TUI/GUI starten!!
+
 //initialisiert das Modell und den Controller
 object Yooloo {
 
 
 
   //Model-class
-  val playingField = new PlayingField()  //TODO: mit Methode initPlayer() lösen
+  val playingField = new PlayingField()
   //conmtroller-class
   val controller =  new Controller(playingField)
   //view-class
@@ -30,26 +30,22 @@ object Yooloo {
     var input:String=""
 
 
-
     do{
       input=scala.io.StdIn.readLine()
-
       tui.enterplayerNames(input)
-
-
     }while(input!="f")
 
-
-
-
-
-   //TODO: Wie kommt man von hier zu addCards????
     do{
       input=scala.io.StdIn.readLine()
-
       tui.enterCard(input)
+    }while(!controller.checkFullCardSet())
 
-    }while(input!="q")
+    do{
+      input=scala.io.StdIn.readLine()
+      tui.pressEnter()
+    }while(controller.checkIfRoundFinished) //TODO: Abbruchbedinging
+
+
 
   }
 }
