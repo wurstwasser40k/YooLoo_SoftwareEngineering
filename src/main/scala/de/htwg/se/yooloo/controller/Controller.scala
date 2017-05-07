@@ -28,7 +28,7 @@ class Controller(playingField: PlayingField) extends Observable {
 
 
   def checkCardSet(input: Int): Boolean = {
-    if (input < 0 || input > getCurrentPlayer.cards.numCards ||
+    if (input <= 0 || input > getCurrentPlayer.cards.numCards ||
       getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length > getCurrentPlayer.cards.numCards) {
       return false
     }
