@@ -57,32 +57,33 @@ class Controller(playingField: PlayingField) extends Observable {
     notifyObservers
   }
 
-  def evaluatePoints: Unit = {
-
-    playingField.finishedRound = false
-    val cardSetLength: Int = playingField.listPlayer.head.cards.cardSet.length
-    var i = 0
-    //variable that runs through the arrays
-    var pointValue = 1 //initially the point value is 1...then 2,3,...10
+  def evaluatePoints(i:Int): Unit = {
 
 
-    while (i < cardSetLength) {
+   // val cardSetLength: Int = playingField.listPlayer.head.cards.cardSet.length
 
-      playingField.pointsInThePot = playingField.pointsInThePot + pointValue
+
+
+
+
+
+
+      playingField.pointsInThePot = playingField.pointsInThePot + playingField.pointValue
       playingField.decideWhoGetsThePoint(playingField.pointsInThePot, i)
 
       //first pointValue = 1, second pointValue = 2,..., last pointValue=10
-      pointValue = pointValue + 1
-      i = i + 1
-      notifyObservers
-    }
+      playingField.pointValue = playingField.pointValue + 1
 
-    playingField.finishedRound = true
+      notifyObservers
+
+
+    if(i+1==playingField.numCards) playingField.finishedRound = true
 
   }
 
   def checkIfRoundFinished: Boolean = {
     if (playingField.finishedRound) {
+//TODO: Hier mitteilung darüber wer gewonnen hat, evtl. zweite update-Funktion????
       return true
     }
     false
@@ -97,21 +98,5 @@ class Controller(playingField: PlayingField) extends Observable {
   }
 
 
-  //TODO: ÄNDERN!!!!
-
-  /*  def makeAMove: Unit = {
-      //Sort the cardsets for each player (player 1 manually, 2 and 3 do it automatically)
-      playingField.listPlayer.head.cards.sortCardSet
-
-      playingField.listPlayer.foreach((player: Player) => if (player != playingField.listPlayer.head) player.cards.sortCardSetAutomatically)
-
-      playingField.evaluatePoints()
-
-      playingField.listPlayer.foreach((player: Player) => player.pointsForOneRound = 0)
-      //Tui.endOfRound()
-
-      notifyObservers
-    }
-  */
 
 }

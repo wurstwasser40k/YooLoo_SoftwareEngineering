@@ -38,9 +38,9 @@ class Tui(controller: Controller)  extends Observer {
 
   }
 
-  def pressEnter():Unit ={
+  def pressEnter(i:Int):Unit ={
 
-     controller.evaluatePoints
+     controller.evaluatePoints(i:Int)
 
   }
 

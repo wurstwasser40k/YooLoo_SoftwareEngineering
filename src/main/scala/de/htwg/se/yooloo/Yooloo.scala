@@ -12,10 +12,8 @@ import de.htwg.se.yooloo.tui.Tui
 //initialisiert das Modell und den Controller
 object Yooloo {
 
-
-
   //Model-class
-  val playingField = new PlayingField(2)
+  val playingField = new PlayingField(4)
   //conmtroller-class
   val controller =  new Controller(playingField)
   //view-class
@@ -28,6 +26,8 @@ object Yooloo {
   def main(args: Array[String]): Unit = {
 
     var input:String=""
+    var i:Int=0
+
 
 
     do{
@@ -42,8 +42,9 @@ object Yooloo {
 
     do{
       input=scala.io.StdIn.readLine()
-      tui.pressEnter()
-    }while(controller.checkIfRoundFinished) //TODO: Abbruchbedinging
+      tui.pressEnter(i)
+      i=i+1
+    }while(!controller.checkIfRoundFinished) //TODO: Abbruchbedinging
 
 
 

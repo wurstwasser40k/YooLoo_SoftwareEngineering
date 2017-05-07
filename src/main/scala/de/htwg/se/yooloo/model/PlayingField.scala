@@ -8,6 +8,7 @@ case class PlayingField(numCards:Int) {
   var currentPlayer:Player = null
   var pointsInThePot: Int = 0
   var finishedRound = false
+  var pointValue = 1
 
 
 
@@ -23,7 +24,6 @@ case class PlayingField(numCards:Int) {
 
   //decides who gets points
   def decideWhoGetsThePoint( pointValue: Int, i: Int): Unit = {
-
 
     var currentListCards: List[Int] = Nil
 
