@@ -44,6 +44,22 @@ class Controller(playingField: PlayingField) extends Observable {
     }
   }
 
+
+  def newRoundStarted():Unit={
+
+    playingField.listPlayer.foreach((player: Player) => {
+      player.cards.cardSet=Nil
+      player.pointsForOneRound=0
+    }
+    )
+    setCurrentPlayer(playingField.listPlayer(playingField.listPlayer.length-1))
+    playingField.pointValue=1
+    playingField.finishedRound=false
+
+  }
+
+
+
   def addCard(input: Int): Unit = {
 
     //check whether there is a change of current player since cardset is completely sorted
@@ -58,16 +74,6 @@ class Controller(playingField: PlayingField) extends Observable {
   }
 
   def evaluatePoints(i:Int): Unit = {
-
-
-   // val cardSetLength: Int = playingField.listPlayer.head.cards.cardSet.length
-
-
-
-
-
-
-
       playingField.pointsInThePot = playingField.pointsInThePot + playingField.pointValue
       playingField.decideWhoGetsThePoint(playingField.pointsInThePot, i)
 

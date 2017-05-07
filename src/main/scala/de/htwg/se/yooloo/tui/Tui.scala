@@ -45,5 +45,15 @@ class Tui(controller: Controller)  extends Observer {
   }
 
 
+  def continueOrQuit(input:String): Unit ={
+    input match {
+      case "y" => println("Next round starts now")
+                  controller.newRoundStarted()
+      case _ => println("Thanks for playing")
+
+
+    }
+  }
+
   override def update: Unit =  println(controller.playingFieldToString)
 }
