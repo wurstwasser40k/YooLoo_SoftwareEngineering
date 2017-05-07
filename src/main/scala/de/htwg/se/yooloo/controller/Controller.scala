@@ -30,7 +30,7 @@ class Controller(playingField: PlayingField) extends Observable {
 
 
   def checkCardSet(input: Int): Boolean = {
-    if (getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length >= 11) {
+    if (getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length >  getCurrentPlayer.cards.numCards) {
       return false
     }
     true
@@ -38,7 +38,7 @@ class Controller(playingField: PlayingField) extends Observable {
 
   def changeCurrentPlayer: Unit = {
     val myIndex = playingField.listPlayer.indexOf(getCurrentPlayer)
-    if (getCurrentPlayer.cards.cardSet.length >= 10 && myIndex >= 1) {
+    if (getCurrentPlayer.cards.cardSet.length >= getCurrentPlayer.cards.numCards && myIndex >= 1) {
 
       if (myIndex <= playingField.listPlayer.length) setCurrentPlayer(playingField.listPlayer(myIndex - 1))
 
@@ -91,7 +91,7 @@ class Controller(playingField: PlayingField) extends Observable {
 
 
   def checkFullCardSet(): Boolean = {
-    if (playingField.listPlayer.head.cards.cardSet.length == 10) {
+    if (playingField.listPlayer.head.cards.cardSet.length == getCurrentPlayer.cards.numCards) {
       return true
     }
     false

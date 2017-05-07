@@ -5,7 +5,7 @@ package de.htwg.se.yooloo.model
  */
 case class Player(namePlayer: String) {
 
-  var cards = new CardSet
+  var cards = new CardSet(2)
 
   //Langfristige Idee: Punkte mit Liste/Vector festhalten
   var pointsForOneRound: Int = 0

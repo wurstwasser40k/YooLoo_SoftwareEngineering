@@ -10,3 +10,5 @@ class Software Engineering at the University of Applied Science HTWG Konstanz
 * Has *ScalaTest* and *ScalaMock* at their latest versions as dependencies.
 * Has *sbt-scalariform*, *sbt-scapegoat*, *scalastyle-sbt-plugin* and *sbt-scoverage* sbt plugins
 * Has .gitignore defaults
+
+

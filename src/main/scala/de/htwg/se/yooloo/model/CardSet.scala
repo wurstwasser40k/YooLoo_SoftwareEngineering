@@ -5,7 +5,9 @@ package de.htwg.se.yooloo.model
  */
 
 //TODO: Alles println ist muss in die view/TUI
-case class CardSet() {
+case class CardSet(numCardsParam:Int) {
+
+  val numCards=this.numCardsParam
 
   //TODO:cardSet als Klassen-Parameter setzen (in Konstruktor)...wenn etwas geändert wird, dann neu erzeugen
   var cardSet: List[Int] = Nil  //the cards in the set
