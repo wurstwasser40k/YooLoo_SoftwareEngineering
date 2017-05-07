@@ -1,7 +1,7 @@
 package de.htwg.se.yooloo
 
 import de.htwg.se.yooloo.controller.Controller
-import de.htwg.se.yooloo.model.{Player, PlayingField}
+import de.htwg.se.yooloo.model.PlayingField
 import de.htwg.se.yooloo.tui.Tui
 
 /**
@@ -15,7 +15,7 @@ object Yooloo {
 
 
   //Model-class
-  val playingField = new PlayingField(List(Player("A")))  //TODO: mit Methode initPlayer() lösen
+  val playingField = new PlayingField()  //TODO: mit Methode initPlayer() lösen
   //conmtroller-class
   val controller =  new Controller(playingField)
   //view-class

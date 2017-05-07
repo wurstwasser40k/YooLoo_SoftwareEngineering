@@ -13,6 +13,9 @@ class Controller(playingField: PlayingField) extends Observable {
   def initPlayer(input: String): Unit = {
     playingField.listPlayer = new Player(input) :: playingField.listPlayer //TODO: mit copy lösen, derzeit ist listPlayer in PlayingField eine var!!!
 
+    //set current player after initial input
+    if(playingField.listPlayer.length==1){setCurrentPlayer(playingField.listPlayer(0))}
+
     notifyObservers
   }
 
@@ -20,29 +23,35 @@ class Controller(playingField: PlayingField) extends Observable {
 
   def setCurrentPlayer(player: Player): Unit = playingField.currentPlayer = player
 
+
   def checkCardSet(input: Int): Boolean = {
-    if (!getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length <= 10){
-       return true
+    if (getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length >= 11){
+       return false
     }
-    false
+    true
   }
 
+def changeCurrentPlayer: Unit={
+  val myIndex = playingField.listPlayer.indexOf(getCurrentPlayer)
+  if (getCurrentPlayer.cards.cardSet.length >= 10 && myIndex>=1) {
+
+    if(myIndex <= playingField.listPlayer.length) setCurrentPlayer(playingField.listPlayer(myIndex-1))
+
+  }
+}
 
   def addCard(input: String): Unit = {
-    //1. add to CardSet
+
+    //check whether there is a change of current player since cardset is completely sorted
+    changeCurrentPlayer
+
+    //add to CardSet
     if (checkCardSet(input.toInt)) {
       getCurrentPlayer.cards.cardSet = input.toInt :: getCurrentPlayer.cards.cardSet
     }
 
     notifyObservers
 
-
-
-    //2. current Playerr
-    if (getCurrentPlayer.cards.cardSet.length >= 10) {
-      val myIndex = playingField.listPlayer.indexOf(getCurrentPlayer)
-      if(myIndex <= playingField.listPlayer.length) setCurrentPlayer(playingField.listPlayer(myIndex + 1))
-    }
   }
 
   //TODO: ÄNDERN!!!!

@@ -2,10 +2,10 @@ package de.htwg.se.yooloo.model
 
 
 //change to playerList: List[Player]
-case class PlayingField(var listPlayer: List[Player]) {
+case class PlayingField() {
 
-
-  var currentPlayer:Player =listPlayer.head
+  var listPlayer: List[Player]=Nil
+  var currentPlayer:Player = null
   var pointsInThePot: Int = 0
 
   /**
@@ -27,6 +27,12 @@ case class PlayingField(var listPlayer: List[Player]) {
   }
   */
 
+  override def toString: String = {
+    var myOutput=""
+
+    listPlayer.foreach((player: Player) => myOutput= myOutput+""+player.namePlayer + ": " + player.cards.cardSet +"\n")
+    myOutput
+  }
 
   def evaluatePoints(): Unit = {
 
