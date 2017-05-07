@@ -15,7 +15,7 @@ object Yooloo {
 
 
   //Model-class
-  val playingField = new PlayingField()
+  val playingField = new PlayingField(2)
   //conmtroller-class
   val controller =  new Controller(playingField)
   //view-class

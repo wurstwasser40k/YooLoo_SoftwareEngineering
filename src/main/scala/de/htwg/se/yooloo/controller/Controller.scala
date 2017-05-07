@@ -9,12 +9,10 @@ import de.htwg.se.yooloo.util.Observable
 class Controller(playingField: PlayingField) extends Observable {
 
 
-
-
   def playingFieldToString = playingField.toString() //TODO: toString von PlayingFiel und von Player schick überschreiben
 
   def initPlayer(input: String): Unit = {
-    playingField.listPlayer = new Player(input) :: playingField.listPlayer //TODO: mit copy lösen, derzeit ist listPlayer in PlayingField eine var!!!
+    playingField.listPlayer = new Player(input, playingField.numCards) :: playingField.listPlayer //TODO: mit copy lösen, derzeit ist listPlayer in PlayingField eine var!!!
 
     //set current player after initial input
     if (playingField.listPlayer.length == 1) {
@@ -30,7 +28,8 @@ class Controller(playingField: PlayingField) extends Observable {
 
 
   def checkCardSet(input: Int): Boolean = {
-    if (getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length >  getCurrentPlayer.cards.numCards) {
+    if (input < 0 || input > getCurrentPlayer.cards.numCards ||
+      getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length > getCurrentPlayer.cards.numCards) {
       return false
     }
     true
@@ -45,20 +44,20 @@ class Controller(playingField: PlayingField) extends Observable {
     }
   }
 
-  def addCard(input: String): Unit = {
+  def addCard(input: Int): Unit = {
 
     //check whether there is a change of current player since cardset is completely sorted
     changeCurrentPlayer
 
     //add to CardSet
-    if (checkCardSet(input.toInt)) {
-      getCurrentPlayer.cards.cardSet = input.toInt :: getCurrentPlayer.cards.cardSet
+    if (checkCardSet(input)) {
+      getCurrentPlayer.cards.cardSet = input :: getCurrentPlayer.cards.cardSet
     }
 
     notifyObservers
   }
 
-  def evaluatePoints:Unit={
+  def evaluatePoints: Unit = {
 
     playingField.finishedRound = false
     val cardSetLength: Int = playingField.listPlayer.head.cards.cardSet.length
@@ -82,10 +81,10 @@ class Controller(playingField: PlayingField) extends Observable {
 
   }
 
-  def checkIfRoundFinished:Boolean={
-  if(playingField.finishedRound){
-    return true
-  }
+  def checkIfRoundFinished: Boolean = {
+    if (playingField.finishedRound) {
+      return true
+    }
     false
   }
 
@@ -96,7 +95,6 @@ class Controller(playingField: PlayingField) extends Observable {
     }
     false
   }
-
 
 
   //TODO: ÄNDERN!!!!

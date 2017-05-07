@@ -2,7 +2,7 @@ package de.htwg.se.yooloo.model
 
 
 //change to playerList: List[Player]
-case class PlayingField() {
+case class PlayingField(numCards:Int) {
 
   var listPlayer: List[Player]=Nil
   var currentPlayer:Player = null
@@ -45,7 +45,7 @@ case class PlayingField() {
       //find largest Int-Value
 
       var largesVal: Int = currentListCards.max
-      var winner: Player = Player("")
+      var winner: Player = Player("",numCards)
 
       listPlayer.foreach((player: Player) => if (player.cards.cardSet(i) == largesVal) winner = player)
       winner.addPoints(pointValue)

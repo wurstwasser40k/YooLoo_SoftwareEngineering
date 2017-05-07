@@ -28,10 +28,14 @@ class Tui(controller: Controller)  extends Observer {
   }
 
   def enterCard(input: String): Unit ={
-      input match {
-        case "1" | "2"| "3" | "4" | "5" | "6" | "7" | "8"| "9"  | "10" => controller.addCard(input)
-        case _ => println("wrong input - please type a number between 1 and 10")
-      }
+
+    try{
+      var myInput:Int = input.toInt
+      controller.addCard(myInput)
+    }catch{
+      case e: NumberFormatException => println("Please enter a number")
+    }
+
   }
 
   def pressEnter():Unit ={
