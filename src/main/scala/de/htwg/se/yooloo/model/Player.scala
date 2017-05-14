@@ -15,4 +15,11 @@ case class Player(namePlayer: String, numCards:Int) {
     this.totalPoints = this.totalPoints + points
     this.pointsForOneRound = this.pointsForOneRound + points
   }
+
+  override def toString:String={
+
+    val myString = "Name: " + namePlayer
+    myString
+  }
+
 }

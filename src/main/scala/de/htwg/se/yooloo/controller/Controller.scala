@@ -1,7 +1,7 @@
 package de.htwg.se.yooloo.controller
 
 import de.htwg.se.yooloo.model.{Player, PlayingField}
-import de.htwg.se.yooloo.util.Observable
+import de.htwg.se.yooloo.util._
 
 /**
   * Created by svenb on 27.04.2017.
@@ -9,37 +9,44 @@ import de.htwg.se.yooloo.util.Observable
 class Controller(playingField: PlayingField) extends Observable {
 
 
-  def playingFieldToString = playingField.toString() //TODO: toString von PlayingFiel und von Player schick überschreiben
+
+  def playingFieldToString :String = playingField.toString()
+  def playerCreationToString :String = playingField.playerCreationToString
+  def cardAddedToString :String =  playingField.cardAddedToString
+  def evaluateMoveToString: String= playingField.evaluateMoveToString
+
+
 
   def initPlayer(input: String): Unit = {
     playingField.listPlayer = new Player(input, playingField.numCards) :: playingField.listPlayer //TODO: mit copy lösen, derzeit ist listPlayer in PlayingField eine var!!!
 
     //set current player after initial input
     if (playingField.listPlayer.length == 1) {
-      setCurrentPlayer(playingField.listPlayer(0))
+      currentPlayer_=(playingField.listPlayer(0))
     }
 
-    notifyObservers
+
+    notifyObservers(CreatedPlayerEvent)
   }
 
-  def getCurrentPlayer: Player = playingField.currentPlayer
+  def currentPlayer: Player = playingField.currentPlayer
 
-  def setCurrentPlayer(player: Player): Unit = playingField.currentPlayer = player
+  def currentPlayer_=(player: Player): Unit = playingField.currentPlayer = player
 
 
   def checkCardSet(input: Int): Boolean = {
-    if (input <= 0 || input > getCurrentPlayer.cards.numCards ||
-      getCurrentPlayer.cards.cardSet.contains(input) || getCurrentPlayer.cards.cardSet.length > getCurrentPlayer.cards.numCards) {
+    if (input <= 0 || input > currentPlayer.cards.numCards ||
+      currentPlayer.cards.cardSet.contains(input) || currentPlayer.cards.cardSet.length > currentPlayer.cards.numCards) {
       return false
     }
     true
   }
 
   def changeCurrentPlayer: Unit = {
-    val myIndex = playingField.listPlayer.indexOf(getCurrentPlayer)
-    if (getCurrentPlayer.cards.cardSet.length >= getCurrentPlayer.cards.numCards && myIndex >= 1) {
+    val myIndex = playingField.listPlayer.indexOf(currentPlayer)
+    if (currentPlayer.cards.cardSet.length >= currentPlayer.cards.numCards && myIndex >= 1) {
 
-      if (myIndex <= playingField.listPlayer.length) setCurrentPlayer(playingField.listPlayer(myIndex - 1))
+      if (myIndex <= playingField.listPlayer.length) currentPlayer_=(playingField.listPlayer(myIndex - 1))
 
     }
   }
@@ -52,7 +59,7 @@ class Controller(playingField: PlayingField) extends Observable {
       player.pointsForOneRound=0
     }
     )
-    setCurrentPlayer(playingField.listPlayer(playingField.listPlayer.length-1))
+    currentPlayer_=(playingField.listPlayer(playingField.listPlayer.length-1))
     playingField.pointValue=1
     playingField.finishedRound=false
 
@@ -67,23 +74,28 @@ class Controller(playingField: PlayingField) extends Observable {
 
     //add to CardSet
     if (checkCardSet(input)) {
-      getCurrentPlayer.cards.cardSet = input :: getCurrentPlayer.cards.cardSet
+      currentPlayer.cards.cardSet = input :: currentPlayer.cards.cardSet
     }
 
-    notifyObservers
+
+    notifyObservers(CardAddedEvent)
   }
 
   def evaluatePoints(i:Int): Unit = {
+      playingField.i=i
       playingField.pointsInThePot = playingField.pointsInThePot + playingField.pointValue
       playingField.decideWhoGetsThePoint(playingField.pointsInThePot, i)
 
       //first pointValue = 1, second pointValue = 2,..., last pointValue=10
       playingField.pointValue = playingField.pointValue + 1
 
-      notifyObservers
+      notifyObservers(MoveEvaluatedEvent)
 
 
-    if(i+1==playingField.numCards) playingField.finishedRound = true
+
+    if(i+1==playingField.numCards) {
+      playingField.finishedRound = true
+      notifyObservers(RoundEvaluated)}
 
   }
 
@@ -97,7 +109,7 @@ class Controller(playingField: PlayingField) extends Observable {
 
 
   def checkFullCardSet(): Boolean = {
-    if (playingField.listPlayer.head.cards.cardSet.length == getCurrentPlayer.cards.numCards) {
+    if (playingField.listPlayer.head.cards.cardSet.length == currentPlayer.cards.numCards) {
       return true
     }
     false

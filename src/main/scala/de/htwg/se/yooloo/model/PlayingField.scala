@@ -9,16 +9,9 @@ case class PlayingField(numCards:Int) {
   var pointsInThePot: Int = 0
   var finishedRound = false
   var pointValue = 1
+  var i=0
 
 
-
-  override def toString: String = {
-    var myOutput=""
-
-    listPlayer.foreach((player: Player) => myOutput= myOutput+"PlayerName: "+player.namePlayer + " has Cardset: " + player.cards.cardSet
-      +",pointsForOneRound: " + player.pointsForOneRound  + ",totalPoints: "+ player.totalPoints +"\n")
-    myOutput
-  }
 
 
 
@@ -56,4 +49,32 @@ case class PlayingField(numCards:Int) {
     add points to pot
      */
   }
+
+
+
+  override def toString: String = {
+    var myOutput=""
+
+    listPlayer.foreach((player: Player) => myOutput= myOutput+"PlayerName: "+player.namePlayer + " has Cardset: " + player.cards.cardSet
+      +",pointsForOneRound: " + player.pointsForOneRound  + ",totalPoints: "+ player.totalPoints +"\n")
+    myOutput
+  }
+
+  def playerCreationToString:String={
+    var myString:String = ""
+    listPlayer.foreach((player: Player) => myString= myString+player.toString + " ")
+    myString
+  }
+
+  def cardAddedToString="Player "+ currentPlayer.namePlayer+ " has the following cards: "+  currentPlayer.cards.toString
+
+  def evaluateMoveToString = {
+    var myString:String = "Uncovered Cards of each Player "
+    listPlayer.foreach((player: Player) => myString= myString+player.cards.cardSet(this.i) + " ")
+    myString=myString+" -> current points for each player: "
+    listPlayer.foreach((player: Player) => myString= myString+player.pointsForOneRound + " ")
+
+    myString
+  }
+
 }

@@ -14,7 +14,7 @@ oChecks the internal flag to see if the observable has changed state and notifie
   * Called when a change has occurred in the state of the observable
   */
 trait Observer {
-  def update: Unit
+  def update(e:Event): Unit
 }
 
 
@@ -28,5 +28,8 @@ class Observable {
   def remove(s: Observer): Unit = subscribers = subscribers.filterNot(o => o == s)
 
   //checks the internal flag to see if the observable has changed state and notifies all observers
-  def notifyObservers: Unit = subscribers.foreach(o => o.update)
+  def notifyObservers(event: Event): Unit = subscribers.foreach(o => o.update(event))
+
+
 }
+

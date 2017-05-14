@@ -13,5 +13,10 @@ case class CardSet(numCardsParam:Int) {
   var cardSet: List[Int] = Nil  //the cards in the set
 
 
+   override def toString:String={
+     var myString =""
+     cardSet.foreach(card => myString=myString+card+" ")
+     myString
+   }
 
 }

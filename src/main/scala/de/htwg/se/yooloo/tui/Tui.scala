@@ -1,7 +1,7 @@
 package de.htwg.se.yooloo.tui
 
 import de.htwg.se.yooloo.controller.Controller
-import de.htwg.se.yooloo.util.Observer
+import de.htwg.se.yooloo.util.{MoveEvaluatedEvent, _}
 
 /**
   * Created by Vk on 16.04.2017.
@@ -55,5 +55,20 @@ class Tui(controller: Controller)  extends Observer {
     }
   }
 
-  override def update: Unit =  println(controller.playingFieldToString)
+  override def update(e:Event): Unit = {
+
+ //   println(controller.playingFieldToString)
+
+    e match{
+      case GameStartedEvent => println("Welcome to YooLoo - please enter PlayerNames and then hit f and enter")
+       case CreatedPlayerEvent =>   println(controller.playerCreationToString)
+       case CardAddedEvent =>   println(controller.cardAddedToString)
+       case MoveEvaluatedEvent =>   println(controller.evaluateMoveToString )
+       case RoundEvaluated =>   println(controller.playingFieldToString)
+
+
+       case _ => println(controller.playingFieldToString)
+    }
+
+  }
 }

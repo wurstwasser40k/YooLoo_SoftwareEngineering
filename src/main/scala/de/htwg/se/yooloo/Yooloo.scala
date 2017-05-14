@@ -3,6 +3,7 @@ package de.htwg.se.yooloo
 import de.htwg.se.yooloo.controller.Controller
 import de.htwg.se.yooloo.model.PlayingField
 import de.htwg.se.yooloo.tui.Tui
+import de.htwg.se.yooloo.util.GameStartedEvent
 
 /**
   * Created by Vk on 07.04.2017.
@@ -13,14 +14,14 @@ import de.htwg.se.yooloo.tui.Tui
 object Yooloo {
 
   //Model-class
-  val playingField = new PlayingField(2)
+  val playingField = new PlayingField(3)
   //conmtroller-class
   val controller = new Controller(playingField)
   //view-class
   val tui = new Tui(controller)
 
 
-  controller.notifyObservers
+  controller.notifyObservers(GameStartedEvent)
 
 
   def main(args: Array[String]): Unit = {
