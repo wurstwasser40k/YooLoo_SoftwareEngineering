@@ -1,22 +1,17 @@
 package de.htwg.se.yooloo.model
 
+case class PlayingField(numCards: Int) {
 
-//change to playerList: List[Player]
-case class PlayingField(numCards:Int) {
-
-  var listPlayer: List[Player]=Nil
-  var currentPlayer:Player = null
+  var listPlayer: List[Player] = Nil
+  var currentPlayer: Player = null
   var pointsInThePot: Int = 0
   var finishedRound = false
   var pointValue = 1
-  var i=0
-
-
-
+  var i = 0
 
 
   //decides who gets points
-  def decideWhoGetsThePoint( pointValue: Int, i: Int): Unit = {
+  def decideWhoGetsThePoint(pointValue: Int, i: Int): Unit = {
 
     var currentListCards: List[Int] = Nil
 
@@ -38,7 +33,7 @@ case class PlayingField(numCards:Int) {
       //find largest Int-Value
 
       var largesVal: Int = currentListCards.max
-      var winner: Player = Player("",numCards)
+      var winner: Player = Player("", numCards)
 
       listPlayer.foreach((player: Player) => if (player.cards.cardSet(i) == largesVal) winner = player)
       winner.addPoints(pointValue)
@@ -51,30 +46,28 @@ case class PlayingField(numCards:Int) {
   }
 
 
-
   override def toString: String = {
-    var myOutput=""
+    var myOutput = ""
 
-    listPlayer.foreach((player: Player) => myOutput= myOutput+"PlayerName: "+player.namePlayer + " has Cardset: " + player.cards.cardSet
-      +",pointsForOneRound: " + player.pointsForOneRound  + ",totalPoints: "+ player.totalPoints +"\n")
+    listPlayer.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cardset: " + player.cards.cardSet
+      + ",pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
     myOutput
   }
 
-  def playerCreationToString:String={
-    var myString:String = ""
-    listPlayer.foreach((player: Player) => myString= myString+player.toString + " ")
+  def playerCreationToString: String = {
+    var myString: String = ""
+    listPlayer.foreach((player: Player) => myString = myString + player.toString + " ")
     myString
   }
 
-  def cardAddedToString="Player "+ currentPlayer.namePlayer+ " has the following cards: "+  currentPlayer.cards.toString
+  def cardAddedToString = "Player " + currentPlayer.namePlayer + " has the following cards: " + currentPlayer.cards.toString
 
   def evaluateMoveToString = {
-    var myString:String = "Uncovered Cards of each Player "
-    listPlayer.foreach((player: Player) => myString= myString+player.cards.cardSet(this.i) + " ")
-    myString=myString+" -> current points for each player: "
-    listPlayer.foreach((player: Player) => myString= myString+player.pointsForOneRound + " ")
+    var myString: String = "Uncovered Cards of each Player "
+    listPlayer.foreach((player: Player) => myString = myString + player.cards.cardSet(this.i) + " ")
+    myString = myString + " -> current points for each player: "
+    listPlayer.foreach((player: Player) => myString = myString + player.pointsForOneRound + " ")
 
     myString
   }
-
 }

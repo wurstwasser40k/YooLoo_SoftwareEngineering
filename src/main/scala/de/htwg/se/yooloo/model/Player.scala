@@ -1,25 +1,11 @@
 package de.htwg.se.yooloo.model
 
-/**
- * Created by svenb on 29.03.2017.
- */
-case class Player(namePlayer: String, numCards:Int) {
+case class Player(namePlayer: String, cards: Cards, pointsForOneRound: Int, totalPoints: Int) {
 
-  var cards = new CardSet(numCards)
+  def addPoints(points: Int): Player = copy(totalPoints = totalPoints + points).copy(pointsForOneRound = pointsForOneRound + points)
 
-  //Langfristige Idee: Punkte mit Liste/Vector festhalten
-  var pointsForOneRound: Int = 0
-  var totalPoints: Int = 0 //TODO: Ist var okay, not immutable?
-
-  def addPoints(points: Int): Unit = {
-    this.totalPoints = this.totalPoints + points
-    this.pointsForOneRound = this.pointsForOneRound + points
-  }
-
-  override def toString:String={
-
+  override def toString: String = {
     val myString = "Name: " + namePlayer
     myString
   }
-
 }

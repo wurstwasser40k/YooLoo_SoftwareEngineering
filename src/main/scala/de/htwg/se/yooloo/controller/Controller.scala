@@ -3,26 +3,19 @@ package de.htwg.se.yooloo.controller
 import de.htwg.se.yooloo.model.{Player, PlayingField}
 import de.htwg.se.yooloo.util._
 
-/**
-  * Created by svenb on 27.04.2017.
-  */
-class Controller(playingField: PlayingField) extends Observable {
-
-
+class Controller(playingField: PlayingField, player:List[Player]) extends Observable {
 
   def playingFieldToString :String = playingField.toString()
   def playerCreationToString :String = playingField.playerCreationToString
   def cardAddedToString :String =  playingField.cardAddedToString
   def evaluateMoveToString: String= playingField.evaluateMoveToString
 
-
-
   def initPlayer(input: String): Unit = {
     playingField.listPlayer = new Player(input, playingField.numCards) :: playingField.listPlayer //TODO: mit copy lösen, derzeit ist listPlayer in PlayingField eine var!!!
 
     //set current player after initial input
-    if (playingField.listPlayer.length == 1) {
-      currentPlayer_=(playingField.listPlayer(0))
+    if (player.length == 1) {
+      currentPlayer_=(player(0))
     }
 
 
