@@ -3,25 +3,26 @@ package de.htwg.se.yooloo.model
 case class Cards(cards: List[Int]) {
 
   def addCard(input: Int): Cards = {
-    if (cards(0) == null) copy(cards = List(input))
-    if (checkCard(input)) {this.copy(cards = input :: this.cards)}
+    if (checkCard(input)) {
+      val tmpList: List[Int] = input :: cards
+      val tmpCards = new Cards(tmpList)
+      return tmpCards
+    }
     this
   }
 
-  def checkCard(input: Int): Boolean = {
-    if (input <= 0 || cards.contains(input)) {
+   private def checkCard(input: Int): Boolean = {
+    if ((input <1 && input >= 10) || cards.contains(input)) {
       false
     }
     else {
       true
     }
   }
-
   //def checkIsCompleted: höchster Integer in List == cards.length-1
-
   override def toString: String = {
     var myString = ""
-    if (cards != null) cards.foreach(card => myString = myString + card + " ")
+    if (cards != null) cards.foreach(card => myString += card + " | ")
     myString
   }
 }
