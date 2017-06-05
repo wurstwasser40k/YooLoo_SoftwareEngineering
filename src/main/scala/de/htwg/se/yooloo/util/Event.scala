@@ -7,6 +7,10 @@ object GameStartedEvent extends Event {}
 
 object CreatedPlayerEvent extends Event {}
 
+object CurrentPlayerEvent extends Event {}
+
+object FullCardSetEvent extends Event {}
+
 object CardAddedEvent extends Event {}
 
 object MoveEvaluatedEvent extends Event {}

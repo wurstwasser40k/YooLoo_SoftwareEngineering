@@ -25,17 +25,17 @@ class Tui(controller: Controller) extends Observer {
    */
 
   def processInputLine(input: String): Unit = {
-    input match {
 
+    input match {
       case a if input.length > 1 => controller.addPlayer(input)
       case "f" => println("Players are now ready to play.")
-                  controller.setCurrentPlayer()
-      case cards if (input.toInt > 0 && input.toInt < 11) => val inputInt: Int = input.toInt
-                                                              controller.addCard(inputInt)
-      case "c" => controller.setCurrentPlayer()
-      case "e" => //controller.evaluatePoints(i: Int)
+        controller setCurrentPlayer()
+      case "c" => controller.changeCurrentPlayer()
+      case "e" => controller.evaluatePoints()
       case "n" => //controller.newRoundStarted
       case "q" => println("Thank you for playing.")
+      case cards if input.toInt > 0 && input.toInt < 11 => //adding name current Player
+        controller.insertCards(input.toInt)
     }
   }
 
@@ -53,15 +53,21 @@ class Tui(controller: Controller) extends Observer {
      */
 
   override def update(e: Event): Unit = {
+
     e match {
       case GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
       case CreatedPlayerEvent => println(playerCreationToString)
-      case CardAddedEvent => println(cardAddedToString)
-      // case MoveEvaluatedEvent => println(controller.evaluateMoveToString)
-      // case RoundEvaluated => println(controller.playingFieldToString)
+      case CurrentPlayerEvent => println("Current player is: " + controller.currentNamePlayer)
+      case FullCardSetEvent => println("No more cards to add. Change player or start playing")
+      case CardAddedEvent => println(
+        "Player " + controller.currentNamePlayer + " has the following cards: "
+          + controller.players(controller.indexCurrentPlayer).cards.toString)
+
+
+      case MoveEvaluatedEvent => println(evaluateMoveToString)
+      case RoundEvaluated => println(playingFieldToString)
       // case _ => println(controller.playingFieldToString)
     }
-
   }
 
   def playerCreationToString: String = {
@@ -70,28 +76,19 @@ class Tui(controller: Controller) extends Observer {
     myString
   }
 
-  def cardAddedToString = {
-    "Player " + controller.currentNamePlayer + " has the following cards: " + controller.players(controller.indexCurrentPlayer).cards.toString
+  def evaluateMoveToString: String = {
+    var myString: String = "Uncovered Cards of each Player "
+    controller.players.foreach((player: Player) => myString = myString + player.cards.cards(controller.i) + " ")
+    myString = myString + " -> current points for each player: "
+    controller.players.foreach((player: Player) => myString = myString + player.pointsForOneRound + " ")
+
+    myString
   }
 
-  /*
-    TODO: einpflegen, kommt aus PlayingField!
-     override def toString: String = {
-      var myOutput = ""
-
-      listPlayer.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cardset: " + player.cards.cards
-        + ",pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
-      myOutput
-    }
-
-      def evaluateMoveToString = {
-        var myString: String = "Uncovered Cards of each Player "
-        listPlayer.foreach((player: Player) => myString = myString + player.cards.cards(this.i) + " ")
-        myString = myString + " -> current points for each player: "
-        listPlayer.foreach((player: Player) => myString = myString + player.pointsForOneRound + " ")
-
-        myString
-      }
-      */
-
+  def playingFieldToString: String = {
+    var myOutput = ""
+    controller.players.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cardset: " + player.cards.cards
+      + ",pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
+    myOutput
+  }
 }
