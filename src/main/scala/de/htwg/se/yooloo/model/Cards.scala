@@ -19,7 +19,7 @@ case class Cards(cards: List[Int]) {
       true
     }
   }
-  //def checkIsCompleted: höchster Integer in List == cards.length-1
+
   override def toString: String = {
     var myString = ""
     if (cards != null) cards.foreach(card => myString += card + " | ")

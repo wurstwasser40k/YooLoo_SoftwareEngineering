@@ -9,10 +9,9 @@ case class Player(namePlayer: String, cards: Cards, pointsForOneRound: Int, tota
   def this(name: String, cards: Cards) = this(name, cards, 0, 0)
 
   def addPoints(points: Int): Player = {
-    var tmpPlayer = new Player(this.namePlayer, this.cards, points, this.totalPoints + points)
+    val tmpPlayer = new Player(this.namePlayer, this.cards, points, this.totalPoints + points)
     tmpPlayer
   }
-
 
   override def toString: String = {
     val myString = "Name: " + namePlayer

@@ -22,12 +22,6 @@ class Controller(var players: List[Player]) extends Observable {
   var pointValue = 1
   var i = 0
 
-  /*
-  def playingFieldToString: String = playingField.toString()
-  def cardAddedToString: String = playingField.cardAddedToString
-  def evaluateMoveToString: String = playingField.evaluateMoveToString
-  */
-
   def addPlayer(input: String): Unit = {
     val player = new Player(input)
     players.head.namePlayer match {
@@ -44,7 +38,6 @@ class Controller(var players: List[Player]) extends Observable {
         notifyObservers(CurrentPlayerEvent)
     }
   }
-
 
   def changeCurrentPlayer(): Unit = {
     indexCurrentPlayer match {

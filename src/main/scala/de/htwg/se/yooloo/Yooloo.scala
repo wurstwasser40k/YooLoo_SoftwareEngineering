@@ -21,27 +21,5 @@ object Yooloo {
       input = scala.io.StdIn.readLine()
       tui.processInputLine(input)
     } while (continue)
-
-    /*
-        do {
-          var i: Int = 0
-          do {
-            input = scala.io.StdIn.readLine()
-            tui.enterCard(input)
-          } while (true)
-          /*
-                       do {
-                         input = scala.io.StdIn.readLine()
-                         tui.pressEnter(i)
-                         i = i + 1
-                       } while (!controller.checkIfRoundFinished)
-
-                       //Asking the user whether he wants to play again or quit
-                       println("Do you want to play again? Then hit y, any other button")
-                       input = scala.io.StdIn.readLine()
-                       tui.continueOrQuit(input)
-          */
-        } while (input == "y")
-    */
   }
 }
