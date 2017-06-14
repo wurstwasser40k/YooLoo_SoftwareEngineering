@@ -1,6 +1,8 @@
-package de.htwg.se.yooloo.model
+package de.htwg.se.yooloo.model.Impl
 
-case class Cards(cards: List[Int]) {
+import de.htwg.se.yooloo.model.ICards
+
+case class Cards(override val cards: List[Int]) extends ICards {
 
   def addCard(input: Int): Cards = {
     if (checkCard(input)) {

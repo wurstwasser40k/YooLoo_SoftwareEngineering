@@ -8,9 +8,6 @@ package de.htwg.se.yooloo.util
   * oChecks the internal flag to see if the observable has changed state and notifies all observers
   */
 
-/**
-  * Called when a change has occurred in the state of the observable
-  */
 trait Observer {
   def update(e: Event): Unit
 }

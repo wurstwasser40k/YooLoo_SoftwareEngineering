@@ -1,7 +1,7 @@
 package de.htwg.se.yooloo.aview.tui
 
-import de.htwg.se.yooloo.controller.Controller
-import de.htwg.se.yooloo.model.Player
+import de.htwg.se.yooloo.controller.Impl.Impl.Controller
+import de.htwg.se.yooloo.model.IPlayer
 import de.htwg.se.yooloo.util._
 
 /**
@@ -66,22 +66,22 @@ class Tui(controller: Controller) extends Observer {
 
   def playerCreationToString: String = {
     var myString: String = ""
-    controller.players.foreach((player: Player) => myString = myString + player.toString + " ") + ""
+    controller.players.foreach((player: IPlayer) => myString = myString + player.toString + " ") + ""
     myString
   }
 
   def evaluateMoveToString: String = {
     var myString: String = "Uncovered Cards of each Player "
-    controller.players.foreach((player: Player) => myString = myString + player.cards.cards(controller.i) + " ")
+    controller.players.foreach((player: IPlayer) => myString = myString + player.cards.cards(controller.i) + " ")
     myString = myString + " -> current points for each player: "
-    controller.players.foreach((player: Player) => myString = myString + player.pointsForOneRound + " ")
+    controller.players.foreach((player: IPlayer) => myString = myString + player.pointsForOneRound + " ")
 
     myString
   }
 
   def playingFieldToString: String = {
     var myOutput = ""
-    controller.players.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cards: " + player.cards
+    controller.players.foreach((player: IPlayer) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cards: " + player.cards
       + "pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
     myOutput
   }

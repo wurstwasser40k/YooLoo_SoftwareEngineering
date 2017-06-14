@@ -1,4 +1,4 @@
-import de.htwg.se.yooloo.model.{Cards, Player}
+import de.htwg.se.yooloo.model.Impl.{Cards, Player}
 
 var cards = List(1, 2)
 var cardList = new Cards(List(1))

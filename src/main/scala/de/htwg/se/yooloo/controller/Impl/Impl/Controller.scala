@@ -1,9 +1,9 @@
-package de.htwg.se.yooloo.controller
+package de.htwg.se.yooloo.controller.Impl.Impl
 
-import de.htwg.se.yooloo.model.{Cards, Player}
+import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
 import de.htwg.se.yooloo.util._
 
-class Controller(var players: List[Player]) extends Observable {
+class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, val cardsFactory: ICardsFactory) extends Observable{
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -21,9 +21,11 @@ class Controller(var players: List[Player]) extends Observable {
   // var finishedRound = false
   var pointValue = 1
   var i = 0
+                     //TODO: bei dependency-Injection : Bind IplayerFactory to PlayerFactory
+
 
   def addPlayer(input: String): Unit = {
-    val player = new Player(input)
+    val player =  playerFactory.create(input)
     players.head.namePlayer match {
       case a if a == null => players = List(player)
       case _ => players = player :: players
@@ -63,18 +65,18 @@ class Controller(var players: List[Player]) extends Observable {
 
   def addCard(input: Int): Unit = {
     //  tmpCards
-    var tmpCards = players(indexCurrentPlayer).cards
-    var tmpPlayer: Player = null
+    var tmpCards: ICards = players(indexCurrentPlayer).cards
+    var tmpPlayer: IPlayer = null
     tmpCards match {
       case a if a == null =>
-        tmpCards = Cards(List(input))
-        tmpPlayer = new Player(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
+        tmpCards = cardsFactory.create(List(input))
+        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
 
       case _ => tmpCards = tmpCards.addCard(input)
-        tmpPlayer = new Player(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
+        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
     }
 
-    var tmpPlayers: List[Player] = players
+    var tmpPlayers: List[IPlayer] = players
     tmpPlayers = tmpPlayers.updated(indexCurrentPlayer, tmpPlayer)
 
     players = tmpPlayers
@@ -98,7 +100,7 @@ class Controller(var players: List[Player]) extends Observable {
 
     var tmpListCards: List[Int] = Nil
 
-    players.foreach((player: Player) => tmpListCards = player.cards.cards(i) :: tmpListCards)
+    players.foreach((player: IPlayer) => tmpListCards = player.cards.cards(i) :: tmpListCards)
     var dupCards: List[Int] = Nil
     dupCards = tmpListCards
 
@@ -111,13 +113,13 @@ class Controller(var players: List[Player]) extends Observable {
     if (tmpListCards != Nil) {
 
       val largesVal: Int = tmpListCards.max
-      var winner: Player = players.head
+      var winner: IPlayer = players.head
 
-      players.foreach((player: Player) => if (player.cards.cards(i) == largesVal) winner = player)
+      players.foreach((player: IPlayer) => if (player.cards.cards(i) == largesVal) winner = player)
       val tmpPoints = winner.pointsForOneRound
       winner = winner.addPoints(tmpPoints + pointValue, winner.totalPoints + pointValue)
       var tmpPlayers = players
-      players.foreach((player: Player) => if (player.namePlayer == winner.namePlayer) {
+      players.foreach((player: IPlayer) => if (player.namePlayer == winner.namePlayer) {
         tmpPlayers = tmpPlayers.updated(players.indexOf(player), winner)
       })
       players = tmpPlayers
@@ -127,10 +129,10 @@ class Controller(var players: List[Player]) extends Observable {
 
 
   def newRoundStarted(): Unit = {
-    var tmpPlayers: List[Player] = List(new Player(players(0).namePlayer, players(0).totalPoints))
+    var tmpPlayers: List[IPlayer] = List(playerFactory.create(players(0).namePlayer, players(0).totalPoints))
 
-    players.foreach((player: Player) => if (player.namePlayer != players(0).namePlayer) {
-      tmpPlayers = new Player(player.namePlayer, player.totalPoints) :: tmpPlayers
+    players.foreach((player: IPlayer) => if (player.namePlayer != players(0).namePlayer) {
+      tmpPlayers = playerFactory.create(player.namePlayer, player.totalPoints) :: tmpPlayers
     })
     players = tmpPlayers
     this.indexCurrentPlayer = 0
