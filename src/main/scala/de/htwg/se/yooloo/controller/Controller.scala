@@ -57,9 +57,7 @@ class Controller(var players: List[Player]) extends Observable {
         == players(0).cards.cards.length) {
       addCard(input)
     }
-    else {
-      notifyObservers(FullCardSetEvent)
-    }
+    else notifyObservers(FullCardsEvent)
   }
 
 
@@ -70,10 +68,10 @@ class Controller(var players: List[Player]) extends Observable {
     tmpCards match {
       case a if a == null =>
         tmpCards = Cards(List(input))
-        tmpPlayer = new Player(currentNamePlayer, tmpCards)
+        tmpPlayer = new Player(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
 
       case _ => tmpCards = tmpCards.addCard(input)
-        tmpPlayer = new Player(currentNamePlayer, tmpCards)
+        tmpPlayer = new Player(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
     }
 
     var tmpPlayers: List[Player] = players
@@ -85,7 +83,6 @@ class Controller(var players: List[Player]) extends Observable {
   }
 
   def evaluatePoints(): Unit = {
-    //this.i = i
     this.pointsInThePot += this.pointValue
     this.decideWhoGetsThePoint(this.pointsInThePot, i)
     this.pointValue += 1
@@ -97,7 +94,6 @@ class Controller(var players: List[Player]) extends Observable {
     this.i += 1
   }
 
-  //decides who gets points
   def decideWhoGetsThePoint(pointValue: Int, i: Int): Unit = {
 
     var tmpListCards: List[Int] = Nil
@@ -112,18 +108,14 @@ class Controller(var players: List[Player]) extends Observable {
     //filter duplicated values from tmpListCards
     tmpListCards = tmpListCards.filterNot(dupCards.toSet)
 
-    /*case1: winner:
-    - call addPoints
-    - reset pot points
-     */
     if (tmpListCards != Nil) {
-      //find largest Int-Value
 
-      var largesVal: Int = tmpListCards.max
+      val largesVal: Int = tmpListCards.max
       var winner: Player = players.head
 
       players.foreach((player: Player) => if (player.cards.cards(i) == largesVal) winner = player)
-      winner = winner.addPoints(pointValue)
+      val tmpPoints = winner.pointsForOneRound
+      winner = winner.addPoints(tmpPoints + pointValue, winner.totalPoints + pointValue)
       var tmpPlayers = players
       players.foreach((player: Player) => if (player.namePlayer == winner.namePlayer) {
         tmpPlayers = tmpPlayers.updated(players.indexOf(player), winner)
@@ -131,30 +123,23 @@ class Controller(var players: List[Player]) extends Observable {
       players = tmpPlayers
       pointsInThePot = 0
     }
-
-    /*case2: No winner
-    add points to pot
-     */
   }
 
-  /*
-      def newRoundStarted(): Unit = {
-        players.foreach((player: Player) => player.copy(cards = Cards(List(0))).copy(pointsForOneRound = 0))
-        currentPlayer_=(players(players.length - 1))
-        this.pointValue = 1
-        this.finishedRound = false
-      }
-      */
 
+  def newRoundStarted(): Unit = {
+    var tmpPlayers: List[Player] = List(new Player(players(0).namePlayer, players(0).totalPoints))
 
-  /*
-      def checkIfRoundFinished: Boolean = {
-        if (this.finishedRound) {
-          true
-        }
-        else {
-          false
-        }
-      }
-      */
+    players.foreach((player: Player) => if (player.namePlayer != players(0).namePlayer) {
+      tmpPlayers = new Player(player.namePlayer, player.totalPoints) :: tmpPlayers
+    })
+    players = tmpPlayers
+    this.indexCurrentPlayer = 0
+    this.pointValue = 1
+    this.i = 0
+    notifyObservers(CurrentPlayerEvent)
+  }
+
+  def exit(): Unit ={
+    System.exit(0)
+  }
 }

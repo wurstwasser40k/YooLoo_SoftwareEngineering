@@ -32,41 +32,35 @@ class Tui(controller: Controller) extends Observer {
         controller setCurrentPlayer()
       case "c" => controller.changeCurrentPlayer()
       case "e" => controller.evaluatePoints()
-      case "n" => //controller.newRoundStarted
+      case "n" => controller.newRoundStarted
       case "q" => println("Thank you for playing.")
+        controller.exit()
       case cards if input.toInt > 0 && input.toInt < 11 => //adding name current Player
         controller.insertCards(input.toInt)
     }
   }
 
-  /*
-     def pressEnter(i: Int): Unit = {controller.evaluatePoints(i: Int)}
-
-
-     def continueOrQuit(input: String): Unit = {
-       input match {
-         case "y" => println("Next round starts now")
-           controller.newRoundStarted()
-         case _ => println("Thanks for playing")
-       }
-     }
-     */
 
   override def update(e: Event): Unit = {
-
     e match {
       case GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
+
       case CreatedPlayerEvent => println(playerCreationToString)
+
       case CurrentPlayerEvent => println("Current player is: " + controller.currentNamePlayer)
-      case FullCardSetEvent => println("No more cards to add. Change player or start playing")
+
+      case FullCardsEvent => println("No more cards to add. Change player or start playing")
+
       case CardAddedEvent => println(
         "Player " + controller.currentNamePlayer + " has the following cards: "
           + controller.players(controller.indexCurrentPlayer).cards.toString)
 
 
       case MoveEvaluatedEvent => println(evaluateMoveToString)
+
       case RoundEvaluated => println(playingFieldToString)
-      // case _ => println(controller.playingFieldToString)
+
+      case _ => println(playingFieldToString)
     }
   }
 
@@ -87,8 +81,8 @@ class Tui(controller: Controller) extends Observer {
 
   def playingFieldToString: String = {
     var myOutput = ""
-    controller.players.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cardset: " + player.cards.cards
-      + ",pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
+    controller.players.foreach((player: Player) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cards: " + player.cards
+      + "pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
     myOutput
   }
 }

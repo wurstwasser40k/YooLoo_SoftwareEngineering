@@ -11,8 +11,8 @@ case class Cards(cards: List[Int]) {
     this
   }
 
-   private def checkCard(input: Int): Boolean = {
-    if ((input <1 && input >= 10) || cards.contains(input)) {
+  private def checkCard(input: Int): Boolean = {
+    if ((input < 1 && input >= 10) || cards.contains(input)) {
       false
     }
     else {
