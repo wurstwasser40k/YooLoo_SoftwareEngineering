@@ -3,7 +3,8 @@ package de.htwg.se.yooloo.controller.Impl.Impl
 import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
 import de.htwg.se.yooloo.util._
 
-class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, val cardsFactory: ICardsFactory) extends Observable{
+class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
+                 val cardsFactory: ICardsFactory) extends Observable {
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -21,11 +22,11 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, 
   // var finishedRound = false
   var pointValue = 1
   var i = 0
-                     //TODO: bei dependency-Injection : Bind IplayerFactory to PlayerFactory
+  //TODO: bei dependency-Injection : Bind IplayerFactory to PlayerFactory
 
 
   def addPlayer(input: String): Unit = {
-    val player =  playerFactory.create(input)
+    val player = playerFactory.create(input)
     players.head.namePlayer match {
       case a if a == null => players = List(player)
       case _ => players = player :: players
@@ -53,12 +54,13 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, 
     if (players(1).cards == null) {
       addCard(input)
     }
-    else if (
-    //TODO: wenn cards currentPlayer länger als cards des ersten
-      this.players(indexCurrentPlayer - 1).cards.cards.length
-        == players(0).cards.cards.length) {
-      addCard(input)
-    }
+    /*   else if (
+       //TODO: wenn cards currentPlayer länger als cards des ersten
+         this.players(indexCurrentPlayer - 1).cards.cards.length
+           == players(0).cards.cards.length) {
+         addCard(input)
+       }
+       */
     else notifyObservers(FullCardsEvent)
   }
 
@@ -70,10 +72,10 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, 
     tmpCards match {
       case a if a == null =>
         tmpCards = cardsFactory.create(List(input))
-        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
+       tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
 
       case _ => tmpCards = tmpCards.addCard(input)
-        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
+     tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
     }
 
     var tmpPlayers: List[IPlayer] = players
@@ -141,7 +143,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory, 
     notifyObservers(CurrentPlayerEvent)
   }
 
-  def exit(): Unit ={
+  def exit(): Unit = {
     System.exit(0)
   }
 }

@@ -14,7 +14,7 @@ case class Cards(override val cards: List[Int]) extends ICards {
   }
 
   private def checkCard(input: Int): Boolean = {
-    if ((input < 1 && input >= 10) || cards.contains(input)) {
+    if ((input < 1 || input >= 10) || cards.contains(input)) {
       false
     }
     else {

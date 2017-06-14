@@ -1,10 +1,11 @@
-package de.htwg.se.yooloo.model
+package de.htwg.se.yooloo.controller
 
-/**
- * Created by svenb on 17.04.2017.
+class ControllerSpec {
 
-//TODO: Rewrite TestSpecs for Playingfield.decidewhogetsthepoints
-class PlayingFieldSpec extends WordSpec with Matchers {
+}
+
+
+/*class PlayingFieldSpec extends WordSpec with Matchers {
 
   //initialization for testing purposes
   val player1 = new Player("A")
