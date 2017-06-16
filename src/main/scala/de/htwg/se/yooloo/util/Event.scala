@@ -1,5 +1,6 @@
 package de.htwg.se.yooloo.util
 
+/*
 class Event() {}
 
 
@@ -16,3 +17,4 @@ object CardAddedEvent extends Event {}
 object MoveEvaluatedEvent extends Event {}
 
 object RoundEvaluated extends Event {}
+*/
