@@ -36,6 +36,8 @@ class Tui(controller: Controller) extends Reactor {
       case a if input.length > 1 => controller.addPlayer(input)
       case "f" => println("Players are now ready to play.")
                   controller.setCurrentPlayer()
+
+
       case "c" => controller.changeCurrentPlayer()
       case "e" => controller.evaluatePoints()
       case "n" => controller.newRoundStarted

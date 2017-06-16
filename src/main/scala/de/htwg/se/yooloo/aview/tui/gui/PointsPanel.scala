@@ -8,7 +8,7 @@ import scala.swing.{GridPanel, TextField}
 
 /**
   * Created by svenb on 16.06.2017.
-  * This surface shows the points for one round
+  * This surface may show the points for one round... currently it does nothing
   */
 class PointsPanel(controller: Controller) extends GridPanel(controller.getAmountOfPlayers(), 1)  {
 

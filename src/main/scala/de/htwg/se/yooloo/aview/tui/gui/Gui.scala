@@ -16,8 +16,10 @@ class Gui(controller: Controller) extends Frame {
 
   contents = new BorderPanel {
     add(new SortPanel(controller), BorderPanel.Position.West)
-    add(new UncoverPanel(controller), BorderPanel.Position.Center)
-    add(new PointsPanel(controller), BorderPanel.Position.East)   //ggf. weglassen
+    //TODO: UncoverPanel und PointsPanel wegwerfen, dafür InfoPanel reinbauen, um die nervigen Popups zu sparen?
+     add(new UncoverPanel(controller), BorderPanel.Position.Center)  //ggf. weglassen
+     add(new PointsPanel(controller), BorderPanel.Position.East)     //ggf. weglassen
+    add(new MenuePanel(controller), BorderPanel.Position.South)
   }
 
   menuBar = new MenuBar {
@@ -34,4 +36,5 @@ class Gui(controller: Controller) extends Frame {
 
   resizable = false
   visible = true
+  repaint()
 }

@@ -84,6 +84,9 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
   }
 
 
+  /**
+    * Currenplayer adds cards
+   */
   def addCard(input: Int): Unit = {
     //  tmpCards
     var tmpCards: ICards = players(indexCurrentPlayer).cards
