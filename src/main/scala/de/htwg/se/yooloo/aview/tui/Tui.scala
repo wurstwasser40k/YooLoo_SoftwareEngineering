@@ -1,6 +1,6 @@
 package de.htwg.se.yooloo.aview.tui
 
-import de.htwg.se.yooloo.controller.Impl.Impl.Controller
+import de.htwg.se.yooloo.controller.Impl.IController
 import de.htwg.se.yooloo.model.IPlayer
 import de.htwg.se.yooloo.util._
 
@@ -11,7 +11,7 @@ import de.htwg.se.yooloo.util._
   * ****  Info ****
   */
 
-class Tui(controller: Controller) extends Observer {
+class Tui(controller: IController) extends Observer {
 
   controller.add(this)
   /*
@@ -47,13 +47,14 @@ class Tui(controller: Controller) extends Observer {
 
       case CreatedPlayerEvent => println(playerCreationToString)
 
-      case CurrentPlayerEvent => println("Current player is: " + controller.currentNamePlayer)
+      case CurrentPlayerEvent => println("Current player is: " + controller.getNameCurrentPlayer)
 
       case FullCardsEvent => println("No more cards to add. Change player or start playing")
 
       case CardAddedEvent => println(
-        "Player " + controller.currentNamePlayer + " has the following cards: "
-          + controller.players(controller.indexCurrentPlayer).cards.toString)
+        "Player " + controller.getNameCurrentPlayer + " has the following cards: "
+          + controller.getPlayers(controller.getIndexCurrentPlayer).cards.toString)
+
 
 
       case MoveEvaluatedEvent => println(evaluateMoveToString)
@@ -66,22 +67,22 @@ class Tui(controller: Controller) extends Observer {
 
   def playerCreationToString: String = {
     var myString: String = ""
-    controller.players.foreach((player: IPlayer) => myString = myString + player.toString + " ") + ""
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.toString + " ") + ""
     myString
   }
 
   def evaluateMoveToString: String = {
     var myString: String = "Uncovered Cards of each Player "
-    controller.players.foreach((player: IPlayer) => myString = myString + player.cards.cards(controller.i) + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.cards.cards(controller.getI) + " ")
     myString = myString + " -> current points for each player: "
-    controller.players.foreach((player: IPlayer) => myString = myString + player.pointsForOneRound + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.pointsForOneRound + " ")
 
     myString
   }
 
   def playingFieldToString: String = {
     var myOutput = ""
-    controller.players.foreach((player: IPlayer) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cards: " + player.cards
+    controller.getPlayers.foreach((player: IPlayer) => myOutput = myOutput + "PlayerName: " + player.namePlayer + " has Cards: " + player.cards
       + "pointsForOneRound: " + player.pointsForOneRound + ",totalPoints: " + player.totalPoints + "\n")
     myOutput
   }

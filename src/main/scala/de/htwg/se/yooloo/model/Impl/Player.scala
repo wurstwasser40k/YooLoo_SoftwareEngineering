@@ -14,7 +14,6 @@ case class Player(override val namePlayer: String, override val cards: Cards,
   //new Round
   def this(name: String, totalPoint: Int) = this(name, null, 0, totalPoint)
 
-
   def addPoints(points: Int, total: Int): Player = {
     val tmpPlayer = Player(this.namePlayer, this.cards, points, total)
     tmpPlayer

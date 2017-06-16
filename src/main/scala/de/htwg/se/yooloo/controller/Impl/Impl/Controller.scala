@@ -19,11 +19,19 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
   var indexCurrentPlayer: Int = 0
   var currentNamePlayer: String = players(indexCurrentPlayer).namePlayer
   var pointsInThePot: Int = 0
-  // var finishedRound = false
   var pointValue = 1
   var i = 0
   //TODO: bei dependency-Injection : Bind IplayerFactory to PlayerFactory
 
+  def getPlayers(): List[IPlayer] = this.players
+
+  //players(0).cards.toString
+
+  def getNameCurrentPlayer(): String = this.currentNamePlayer
+
+  def getIndexCurrentPlayer: Int = this.indexCurrentPlayer
+
+  def getI: Int = this.i
 
   def addPlayer(input: String): Unit = {
     val player = playerFactory.create(input)
@@ -33,7 +41,6 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     }
     notifyObservers(CreatedPlayerEvent)
   }
-
 
   def setCurrentPlayer(): Unit = {
     indexCurrentPlayer match {
@@ -72,10 +79,10 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     tmpCards match {
       case a if a == null =>
         tmpCards = cardsFactory.create(List(input))
-       tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
+        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
 
       case _ => tmpCards = tmpCards.addCard(input)
-     tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards,  players(indexCurrentPlayer).totalPoints)
+        tmpPlayer = playerFactory.create(currentNamePlayer, tmpCards, players(indexCurrentPlayer).totalPoints)
     }
 
     var tmpPlayers: List[IPlayer] = players
@@ -131,9 +138,9 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
 
 
   def newRoundStarted(): Unit = {
-    var tmpPlayers: List[IPlayer] = List(playerFactory.create(players(0).namePlayer, players(0).totalPoints))
+    var tmpPlayers: List[IPlayer] = List(playerFactory.create(players.head.namePlayer, players.head.totalPoints))
 
-    players.foreach((player: IPlayer) => if (player.namePlayer != players(0).namePlayer) {
+    players.foreach((player: IPlayer) => if (player.namePlayer != players.head.namePlayer) {
       tmpPlayers = playerFactory.create(player.namePlayer, player.totalPoints) :: tmpPlayers
     })
     players = tmpPlayers
