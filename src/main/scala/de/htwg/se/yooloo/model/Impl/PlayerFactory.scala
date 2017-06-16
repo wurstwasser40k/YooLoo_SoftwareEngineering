@@ -1,10 +1,10 @@
 package de.htwg.se.yooloo.model.Impl
 
-import de.htwg.se.yooloo.model.{IPlayer, IPlayerFactory}
+import de.htwg.se.yooloo.model.{ICards, IPlayer, IPlayerFactory}
 
 class PlayerFactory extends IPlayerFactory {
 
-  def create(namePlayer: String, cards: Cards, pointsForOneRound: Int, totalPoints: Int): IPlayer = {
+  def create(namePlayer: String, cards: ICards, pointsForOneRound: Int, totalPoints: Int): IPlayer = {
     new Player(namePlayer, cards, pointsForOneRound, totalPoints)
   }
 
@@ -16,7 +16,7 @@ class PlayerFactory extends IPlayerFactory {
     new Player(namePlayer, tp)
   }
 
-  def create(namePlayer: String, cards: Cards, tp: Int): IPlayer = {
+  def create(namePlayer: String, cards: ICards, tp: Int): IPlayer = {
     new Player(namePlayer, cards, tp)
   }
 }

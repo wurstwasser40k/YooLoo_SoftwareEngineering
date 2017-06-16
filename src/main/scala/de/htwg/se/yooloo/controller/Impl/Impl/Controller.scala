@@ -1,10 +1,11 @@
 package de.htwg.se.yooloo.controller.Impl.Impl
 
+import de.htwg.se.yooloo.controller.Impl.IController
 import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
 import de.htwg.se.yooloo.util._
 
 class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
-                 val cardsFactory: ICardsFactory) extends Observable {
+                 val cardsFactory: ICardsFactory) extends IController {
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -24,8 +25,6 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
   //TODO: bei dependency-Injection : Bind IplayerFactory to PlayerFactory
 
   def getPlayers(): List[IPlayer] = this.players
-
-  //players(0).cards.toString
 
   def getNameCurrentPlayer(): String = this.currentNamePlayer
 

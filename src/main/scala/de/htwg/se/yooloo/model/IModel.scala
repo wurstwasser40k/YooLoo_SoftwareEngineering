@@ -5,7 +5,7 @@ import de.htwg.se.yooloo.model.Impl.{Cards, Player}
 trait IPlayer {
 
   val namePlayer: String
-  val cards: Cards
+  val cards: ICards
   val pointsForOneRound: Int
   val totalPoints: Int
 

@@ -14,6 +14,7 @@ import de.htwg.se.yooloo.util._
 class Tui(controller: IController) extends Observer {
 
   controller.add(this)
+
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
   2. Fertig mit Spieler einfügen                              -> f
@@ -53,7 +54,7 @@ class Tui(controller: IController) extends Observer {
 
       case CardAddedEvent => println(
         "Player " + controller.getNameCurrentPlayer + " has the following cards: "
-          + controller.getPlayers(controller.getIndexCurrentPlayer).cards.toString)
+          + controller.getPlayers()(controller.getIndexCurrentPlayer).cards.toString)
 
 
 

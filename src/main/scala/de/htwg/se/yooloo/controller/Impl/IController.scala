@@ -5,11 +5,11 @@ import de.htwg.se.yooloo.util.Observable
 
 trait IController extends Observable {
 
-  val players: List[IPlayer]
+  var players: List[IPlayer]
   val playerFactory: IPlayerFactory
   val cardsFactory: ICardsFactory
 
-  def getPlayers: List[IPlayer]
+  def getPlayers(): List[IPlayer]
 
   def getNameCurrentPlayer(): String
 

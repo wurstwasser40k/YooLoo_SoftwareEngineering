@@ -1,15 +1,15 @@
 package de.htwg.se.yooloo.model.Impl
 
-import de.htwg.se.yooloo.model.IPlayer
+import de.htwg.se.yooloo.model.{ICards, IPlayer}
 
-case class Player(override val namePlayer: String, override val cards: Cards,
+case class Player(override val namePlayer: String, override val cards: ICards,
                   override val pointsForOneRound: Int, override val totalPoints: Int) extends IPlayer {
 
   //creating player
   def this(name: String) = this(name, null, 0, 0)
 
   //creating cards
-  def this(name: String, cards: Cards, tP: Int) = this(name, cards, 0, tP)
+  def this(name: String, cards: ICards, tP: Int) = this(name, cards, 0, tP)
 
   //new Round
   def this(name: String, totalPoint: Int) = this(name, null, 0, totalPoint)
