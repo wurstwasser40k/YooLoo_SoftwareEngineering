@@ -1,11 +1,16 @@
-package de.htwg.se.yooloo.controller.Impl.Impl
+package de.htwg.se.yooloo.controller.Impl
 
-import de.htwg.se.yooloo.controller.Impl.IController
+import de.htwg.se.yooloo.controller.Impl.Impl.CreatedPlayerEvent
 import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
 import de.htwg.se.yooloo.util._
 
+import scala.swing.Publisher
+
+
+
+
 class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
-                 val cardsFactory: ICardsFactory) extends IController {
+                 val cardsFactory: ICardsFactory) extends Publisher {
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -38,7 +43,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
       case a if a == null => players = List(player)
       case _ => players = player :: players
     }
-    notifyObservers(CreatedPlayerEvent)
+    publish(new CreatedPlayerEvent())
   }
 
   def setCurrentPlayer(): Unit = {

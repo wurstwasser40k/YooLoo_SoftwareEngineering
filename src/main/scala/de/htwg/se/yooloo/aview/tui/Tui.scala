@@ -1,8 +1,11 @@
 package de.htwg.se.yooloo.aview.tui
 
-import de.htwg.se.yooloo.controller.Impl.IController
+
+//import de.htwg.se.yooloo.controller.Impl.{CardAddedEvent, CreatedPlayerEvent, CurrentPlayerEvent, FullCardsEvent, GameStartedEvent, MoveEvaluatedEvent, RoundEvaluated => _, FullCardsEvent => _, MoveEvaluatedEvent => _, RoundEvaluated => _, _}
+import de.htwg.se.yooloo.controller.Impl._
 import de.htwg.se.yooloo.model.IPlayer
-import de.htwg.se.yooloo.util._
+
+import scala.swing.Reactor
 
 /**
   * ***** Info ****
@@ -11,9 +14,10 @@ import de.htwg.se.yooloo.util._
   * ****  Info ****
   */
 
-class Tui(controller: IController) extends Observer {
+class Tui(controller: Controller) extends Reactor {
 
-  controller.add(this)
+  listenTo(controller)
+
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -42,7 +46,30 @@ class Tui(controller: IController) extends Observer {
   }
 
 
-  override def update(e: Event): Unit = {
+
+  reactions += {
+    case e:GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
+
+    case e:CreatedPlayerEvent => println(playerCreationToString)
+
+    case e:CurrentPlayerEvent => println("Current player is: " + controller.getNameCurrentPlayer)
+
+    case e:FullCardsEvent => println("No more cards to add. Change player or start playing")
+
+    case e:CardAddedEvent => println(
+      "Player " + controller.getNameCurrentPlayer + " has the following cards: "
+        + controller.getPlayers()(controller.getIndexCurrentPlayer).cards.toString)
+
+
+    case e:MoveEvaluatedEvent => println(evaluateMoveToString)
+
+    case e:RoundEvaluated => println(playingFieldToString)
+
+    case _ => println(playingFieldToString)
+  }
+
+/*
+  def update(e: Event): Unit = {
     e match {
       case GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
 
@@ -65,7 +92,7 @@ class Tui(controller: IController) extends Observer {
       case _ => println(playingFieldToString)
     }
   }
-
+*/
   def playerCreationToString: String = {
     var myString: String = ""
     controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.toString + " ") + ""
