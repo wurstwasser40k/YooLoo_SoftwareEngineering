@@ -10,6 +10,7 @@ import scala.swing.{Label, _}
   */
 class SwingGui(controller: Controller) extends Frame {
 
+  listenTo(controller)
 
   title = "HTWG YooLoo"
 

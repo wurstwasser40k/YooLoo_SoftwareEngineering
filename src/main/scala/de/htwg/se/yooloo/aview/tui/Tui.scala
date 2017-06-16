@@ -16,6 +16,7 @@ import scala.swing.Reactor
 
 class Tui(controller: Controller) extends Reactor {
 
+
   listenTo(controller)
 
 
