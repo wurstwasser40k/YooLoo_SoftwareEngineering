@@ -1,9 +1,14 @@
 package de.htwg.se.yooloo.controller.Impl
 
 import de.htwg.se.yooloo.model.{ICardsFactory, IPlayer, IPlayerFactory}
-import de.htwg.se.yooloo.util.Observable
 
-trait IController extends Observable {
+
+import scala.swing.Publisher
+
+//TODO: Hab den IController nicht benutzt, Patrick und Johannes auch nicht - kann man glaube ich bleiben lassen
+
+
+trait IController extends Publisher {
 
   var players: List[IPlayer]
   val playerFactory: IPlayerFactory

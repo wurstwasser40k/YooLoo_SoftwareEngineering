@@ -7,7 +7,7 @@ package de.htwg.se.yooloo.util
   * public void notifyObservers()
   * oChecks the internal flag to see if the observable has changed state and notifies all observers
   */
-
+/*
 trait Observer {
   def update(e: Event): Unit
 }
@@ -22,4 +22,4 @@ class Observable {
 
   //checks the internal flag to see if the observable has changed state and notifies all observers
   def notifyObservers(event: Event): Unit = subscribers.foreach(o => o.update(event))
-}
+}*/

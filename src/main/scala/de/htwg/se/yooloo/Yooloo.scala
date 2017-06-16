@@ -2,8 +2,8 @@ package de.htwg.se.yooloo
 
 
 import de.htwg.se.yooloo.aview.tui.Tui
-import de.htwg.se.yooloo.aview.tui.gui.SwingGui
-import de.htwg.se.yooloo.controller.Impl.Controller
+import de.htwg.se.yooloo.aview.tui.gui.Gui
+import de.htwg.se.yooloo.controller.Impl.{Controller, GameStartedEvent}
 import de.htwg.se.yooloo.model.Impl.{CardsFactory, PlayerFactory}
 
 object Yooloo {
@@ -11,8 +11,8 @@ object Yooloo {
   //DI: Instanz für INterface IPlayerFActory statt new PlayerFactory
   val controller = new Controller(List((new PlayerFactory).create(null)), new PlayerFactory, new CardsFactory)
   val tui = new Tui(controller)
-  val gui =  new SwingGui(controller)
-  //controller.notifyObserver(GameStartedEvent)
+  val gui =  new Gui(controller)
+  controller.publish(new GameStartedEvent())      //controller.notifyObserver(GameStartedEvent)
 
   def main(args: Array[String]): Unit = {
 
