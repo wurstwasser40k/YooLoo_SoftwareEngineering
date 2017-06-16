@@ -1,8 +1,6 @@
 package de.htwg.se.yooloo.controller.Impl
 
-import de.htwg.se.yooloo.controller.Impl.Impl.CreatedPlayerEvent
 import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
-import de.htwg.se.yooloo.util._
 
 import scala.swing.Publisher
 
@@ -49,7 +47,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
   def setCurrentPlayer(): Unit = {
     indexCurrentPlayer match {
       case b if b < players.size - 1 => this.currentNamePlayer = players(indexCurrentPlayer).namePlayer
-        notifyObservers(CurrentPlayerEvent)
+        publish(new CurrentPlayerEvent())
     }
   }
 
@@ -57,7 +55,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     indexCurrentPlayer match {
       case b if b < players.size - 1 => this.currentNamePlayer = players(indexCurrentPlayer + 1).namePlayer
         this.indexCurrentPlayer += 1
-        notifyObservers(CurrentPlayerEvent)
+        publish(new CurrentPlayerEvent())
     }
   }
 
@@ -72,7 +70,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
          addCard(input)
        }
        */
-    else notifyObservers(FullCardsEvent)
+    else publish(new FullCardsEvent())
   }
 
 
@@ -94,17 +92,17 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
 
     players = tmpPlayers
     //currPlayer = players(indexCurrentPlayer)
-    notifyObservers(CardAddedEvent)
+    publish(new CardAddedEvent())
   }
 
   def evaluatePoints(): Unit = {
     this.pointsInThePot += this.pointValue
     this.decideWhoGetsThePoint(this.pointsInThePot, i)
     this.pointValue += 1
-    notifyObservers(MoveEvaluatedEvent)
+    publish( new MoveEvaluatedEvent())
     if (i + 1 == players.head.cards.cards.length) {
 
-      notifyObservers(RoundEvaluated)
+      publish(new RoundEvaluated())
     }
     this.i += 1
   }
@@ -151,7 +149,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     this.indexCurrentPlayer = 0
     this.pointValue = 1
     this.i = 0
-    notifyObservers(CurrentPlayerEvent)
+    publish(new CurrentPlayerEvent())
   }
 
   def exit(): Unit = {
