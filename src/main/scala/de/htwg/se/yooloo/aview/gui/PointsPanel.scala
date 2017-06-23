@@ -1,4 +1,4 @@
-package de.htwg.se.yooloo.aview.tui.gui
+package de.htwg.se.yooloo.aview.gui
 
 import java.awt.Dimension
 

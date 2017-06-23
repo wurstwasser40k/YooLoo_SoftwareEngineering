@@ -1,7 +1,7 @@
-package de.htwg.se.yooloo.aview.tui.gui
+package de.htwg.se.yooloo.aview.gui
 
-
-import de.htwg.se.yooloo.controller.Impl.{Controller, CurrentPlayerEvent}
+import de.htwg.se.yooloo.controller.CurrentPlayerEvent
+import de.htwg.se.yooloo.controller.Impl.Controller
 
 import scala.swing._
 

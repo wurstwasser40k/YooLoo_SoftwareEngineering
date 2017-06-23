@@ -1,6 +1,7 @@
-package de.htwg.se.yooloo.aview.tui.gui
+package de.htwg.se.yooloo.aview.gui
 
-import de.htwg.se.yooloo.controller.Impl.{Controller, MoveEvaluatedEvent, RoundEvaluated}
+import de.htwg.se.yooloo.controller.Impl.Controller
+import de.htwg.se.yooloo.controller.{MoveEvaluatedEvent, RoundEvaluated}
 import de.htwg.se.yooloo.model.IPlayer
 
 import scala.swing.{Action, Button, Dialog, GridPanel}

@@ -1,6 +1,7 @@
-package de.htwg.se.yooloo.aview.tui.gui
+package de.htwg.se.yooloo.aview.gui
 
-import de.htwg.se.yooloo.controller.Impl.{CardAddedEvent, Controller, CurrentPlayerEvent}
+import de.htwg.se.yooloo.controller.{CardAddedEvent, CurrentPlayerEvent}
+import de.htwg.se.yooloo.controller.Impl.Controller
 
 import scala.swing.{Dimension, GridPanel, TextField}
 

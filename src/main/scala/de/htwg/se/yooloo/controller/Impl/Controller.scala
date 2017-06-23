@@ -1,23 +1,24 @@
 package de.htwg.se.yooloo.controller.Impl
 
+import de.htwg.se.yooloo.controller._
 import de.htwg.se.yooloo.model.{ICards, ICardsFactory, IPlayer, IPlayerFactory}
 
 import scala.swing.Publisher
-
-
 
 
 class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
                  val cardsFactory: ICardsFactory, val amountOfCards:Int,  val amountOfMaxPlayers:Int) extends Publisher {
 
 
+
   def getAmountOfMaxPlayers()=amountOfMaxPlayers
   def getAmountOfCards()=amountOfCards
 
-  //TODO: falls wir das noch machen wollen
-  def redo()= ???
-  def undo()= ???
 
+
+  //TODO: falls wir das noch machen wollen
+  def redo() = ???
+  def undo() = ???
 
 
   /*
@@ -85,8 +86,8 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
 
 
   /**
-    * Currenplayer adds cards
-   */
+    * Currentplayer adds cards
+    */
   def addCard(input: Int): Unit = {
     //  tmpCards
     var tmpCards: ICards = players(indexCurrentPlayer).cards
@@ -112,7 +113,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     this.pointsInThePot += this.pointValue
     this.decideWhoGetsThePoint(this.pointsInThePot, i)
     this.pointValue += 1
-    publish( new MoveEvaluatedEvent())
+    publish(new MoveEvaluatedEvent())
     if (i + 1 == players.head.cards.cards.length) {
 
       publish(new RoundEvaluated())
