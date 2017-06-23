@@ -1,7 +1,6 @@
 package de.htwg.se.yooloo.aview.tui
 
-
-//import de.htwg.se.yooloo.controller.Impl.{CardAddedEvent, CreatedPlayerEvent, CurrentPlayerEvent, FullCardsEvent, GameStartedEvent, MoveEvaluatedEvent, RoundEvaluated => _, FullCardsEvent => _, MoveEvaluatedEvent => _, RoundEvaluated => _, _}
+import de.htwg.se.yooloo.controller._
 import de.htwg.se.yooloo.controller.Impl._
 import de.htwg.se.yooloo.model.IPlayer
 
@@ -18,7 +17,6 @@ class Tui(controller: Controller) extends Reactor {
 
 
   listenTo(controller)
-
 
   /*
   1. Name des Spielers einfügen                               -> any String, mehr als zwei Zeichen
@@ -49,7 +47,6 @@ class Tui(controller: Controller) extends Reactor {
   }
 
 
-
   reactions += {
     case e:GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
 
@@ -71,31 +68,6 @@ class Tui(controller: Controller) extends Reactor {
     case _ => println(playingFieldToString)
   }
 
-/*
-  def update(e: Event): Unit = {
-    e match {
-      case GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
-
-      case CreatedPlayerEvent => println(playerCreationToString)
-
-      case CurrentPlayerEvent => println("Current player is: " + controller.getNameCurrentPlayer)
-
-      case FullCardsEvent => println("No more cards to add. Change player or start playing")
-
-      case CardAddedEvent => println(
-        "Player " + controller.getNameCurrentPlayer + " has the following cards: "
-          + controller.getPlayers()(controller.getIndexCurrentPlayer).cards.toString)
-
-
-
-      case MoveEvaluatedEvent => println(evaluateMoveToString)
-
-      case RoundEvaluated => println(playingFieldToString)
-
-      case _ => println(playingFieldToString)
-    }
-  }
-*/
   def playerCreationToString: String = {
     var myString: String = ""
     controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.toString + " ") + ""

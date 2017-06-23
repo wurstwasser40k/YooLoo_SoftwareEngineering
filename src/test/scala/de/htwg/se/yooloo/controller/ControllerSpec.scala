@@ -1,40 +1,40 @@
 package de.htwg.se.yooloo.controller
 
-import de.htwg.se.yooloo.model.Impl.Player
+import de.htwg.se.yooloo.controller.Impl.Controller
+import de.htwg.se.yooloo.model.Impl.{CardsFactory, PlayerFactory}
 import org.scalatest.{Matchers, WordSpec}
 
 class ControllerSpec extends WordSpec with Matchers {
-  /*
-  object GameStartedEvent
-object CreatedPlayerEvent
-object CurrentPlayerEvent
-object FullCardsEvent
-object CardAddedEvent
-object MoveEvaluatedEvent
-object RoundEvaluated
-   */
 
   "A Controller" when {
-    "observed by an Observer" should {
-      val players: List[Player] = List(null)
-      "notify its Observer after gama was startet" in {
-      }
-      "notify its Observer after player was created" in {
-      }
-      "notify its Observer after card current player was set" in {
-      }
-      "notify its Observer after card was added" in {
-      }
-      "notify its Observer after move was evaluated" in {
-      }
-      "notify its Observer after round was evaluated" in {
+    var controller = new Controller(List((new PlayerFactory).create(null)), new PlayerFactory, new CardsFactory)
+
+    "adding a player" should {
+      val player = new PlayerFactory().create("Viktoria")
+      controller.addPlayer("Viktoria")
+      "add player to List of player" in {
+        controller.players.toString() should be("List(Name: Viktoria)")
       }
     }
+    "setting current player " should{
+
+    }
+    /*
+    "notify its Observer after card current player was set" in {
+    }
+    "notify its Observer after card was added" in {
+    }
+    "notify its Observer after move was evaluated" in {
+    }
+    "notify its Observer after round was evaluated" in {
+    }
+    */
   }
 }
 
 
-/*class PlayingFieldSpec extends WordSpec with Matchers {
+/*
+
 
   "Calling makeAMove for " +
     "set1.cardSet=List(5,4,3,2,1,10,9,8,7,6)" +
@@ -53,7 +53,7 @@ object RoundEvaluated
 
       }
     }
-/*
+
   "Calling decideWhoGetsThePoint(5,3,2,5) " should {
     "result in  5 points  points for the first player A" in {
 
@@ -104,6 +104,3 @@ object RoundEvaluated
     }
   }
   */
-
-}
-*/

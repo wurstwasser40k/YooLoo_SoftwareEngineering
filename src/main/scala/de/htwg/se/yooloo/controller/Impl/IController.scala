@@ -1,12 +1,9 @@
-package de.htwg.se.yooloo.controller.Impl
+package de.htwg.se.yooloo.controller
 
 import de.htwg.se.yooloo.model.{ICardsFactory, IPlayer, IPlayerFactory}
 
 
 import scala.swing.Publisher
-
-//TODO: Hab den IController nicht benutzt, Patrick und Johannes auch nicht - kann man glaube ich bleiben lassen
-
 
 trait IController extends Publisher {
 

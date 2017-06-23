@@ -1,9 +1,9 @@
 package de.htwg.se.yooloo
 
-
 import de.htwg.se.yooloo.aview.tui.Tui
-import de.htwg.se.yooloo.aview.tui.gui.Gui
-import de.htwg.se.yooloo.controller.Impl.{Controller, GameStartedEvent}
+import de.htwg.se.yooloo.aview.gui.Gui
+import de.htwg.se.yooloo.controller.GameStartedEvent
+import de.htwg.se.yooloo.controller.Impl.Controller
 import de.htwg.se.yooloo.model.Impl.{CardsFactory, PlayerFactory}
 
 object Yooloo {

@@ -11,4 +11,37 @@ class Software Engineering at the University of Applied Science HTWG Konstanz
 * Has *sbt-scalariform*, *sbt-scapegoat*, *scalastyle-sbt-plugin* and *sbt-scoverage* sbt plugins
 * Has .gitignore defaults
 
+yooloo the game
+---------------------------
+This project is a playable game of Yooloo https://www.yooloo.cool/yooloo/. The rules are simplified for this version.
+
+Why
+-------------
+The project was developed for the
+class Software Engineering at the University of Applied Science HTWG Konstanz.
+
+This implementation has a MVC architecture and a GUI and a TUI
+
+Documentation
+-------------
+
+How
+---------------
+To play using the GUI:
+- Enter name of player in the console, separated by pressing enter.
+- When you´re read to play, press f and the gui starts.
+
+To play using the TUI:
+
+   1. Enter name of players                                   -> press any String, may contain more than two characters
+  2. ready eintering name of player                           -> press 'f'
+  3. filling cards of each player                             -> Int between 1 - 9
+  4. next player filling cards                                -> c
+  5. Evaluate points (current state, total state)             -> e
+  6. new game                                                 -> n
+  7. quit                                                     -> q
+
+
+
+.
 
