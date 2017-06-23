@@ -1,7 +1,7 @@
 package de.htwg.se.yooloo.aview.tui.gui
 
 
-import de.htwg.se.yooloo.controller.Impl.Controller
+import de.htwg.se.yooloo.controller.Impl.{Controller, CurrentPlayerEvent}
 
 import scala.swing._
 
@@ -17,8 +17,7 @@ class Gui(controller: Controller) extends Frame {
   contents = new BorderPanel {
     add(new SortPanel(controller), BorderPanel.Position.West)
     //TODO: UncoverPanel und PointsPanel wegwerfen, dafür InfoPanel reinbauen, um die nervigen Popups zu sparen?
-     add(new UncoverPanel(controller), BorderPanel.Position.Center)  //ggf. weglassen
-     add(new PointsPanel(controller), BorderPanel.Position.East)     //ggf. weglassen
+     add(new AddcardsPanel(controller), BorderPanel.Position.Center)  //ggf. weglassen
     add(new MenuePanel(controller), BorderPanel.Position.South)
   }
 
@@ -31,10 +30,13 @@ class Gui(controller: Controller) extends Frame {
   }
 
 
+  reactions += {
+    case e:CurrentPlayerEvent =>   visible = true
+  }
 
 
 
-  resizable = false
-  visible = true
+  resizable = true
+
   repaint()
 }

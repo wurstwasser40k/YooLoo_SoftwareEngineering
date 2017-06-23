@@ -51,7 +51,7 @@ class Tui(controller: Controller) extends Reactor {
 
 
   reactions += {
-    case e:GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player")
+    case e:GameStartedEvent => println("Welcome to HTWG Yooloo! - please enter names of Player, then hit f and enter")
 
     case e:CreatedPlayerEvent => println(playerCreationToString)
 
@@ -104,9 +104,9 @@ class Tui(controller: Controller) extends Reactor {
 
   def evaluateMoveToString: String = {
     var myString: String = "Uncovered Cards of each Player "
-    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.cards.cards(controller.getI) + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.namePlayer+":" + player.cards.cards(controller.getI) + " ")
     myString = myString + " -> current points for each player: "
-    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.pointsForOneRound + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString  + player.namePlayer+":" + player.pointsForOneRound + " ")
 
     myString
   }

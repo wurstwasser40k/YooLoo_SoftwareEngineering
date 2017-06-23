@@ -10,10 +10,10 @@ import scala.swing.{GridPanel, TextField}
   * Created by svenb on 16.06.2017.
   * This surface may show the points for one round... currently it does nothing
   */
-class PointsPanel(controller: Controller) extends GridPanel(controller.getAmountOfPlayers(), 1)  {
+class PointsPanel(controller: Controller) extends GridPanel(controller.getAmountOfMaxPlayers(), 1)  {
 
   preferredSize = new Dimension(100, 100)
-  val gridHeight = controller.getAmountOfPlayers()
+  val gridHeight = controller.getAmountOfMaxPlayers()
   val gridWidth = 1
   listenTo(controller)
 

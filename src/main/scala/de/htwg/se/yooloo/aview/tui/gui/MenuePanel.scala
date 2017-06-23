@@ -10,7 +10,7 @@ import scala.swing.{Action, Button, GridPanel}
   */
 class MenuePanel(controller: Controller) extends GridPanel(1, 3)  {
 
-//  preferredSize = new Dimension(100, 100)
+
   listenTo(controller)
 
 

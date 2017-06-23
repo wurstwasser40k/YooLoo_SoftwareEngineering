@@ -29,7 +29,6 @@ class SortPanel(controller: Controller) extends GridPanel(1, controller.getAmoun
   def showDialog(message: String) = Dialog.showMessage(this, message)
 
   reactions += {
-   // case e: CurrentPlayerEvent => repaint()
     case e: MoveEvaluatedEvent => showDialog(evaluateMoveToString)
     case e: RoundEvaluated => showDialog(playingFieldToString)
   }
@@ -38,9 +37,9 @@ class SortPanel(controller: Controller) extends GridPanel(1, controller.getAmoun
 
   def evaluateMoveToString: String = {
     var myString: String = "Uncovered Cards of each Player "
-    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.cards.cards(controller.getI) + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.namePlayer+":" + player.cards.cards(controller.getI) + " ")
     myString = myString + " -> current points for each player: "
-    controller.getPlayers.foreach((player: IPlayer) => myString = myString + player.pointsForOneRound + " ")
+    controller.getPlayers.foreach((player: IPlayer) => myString = myString  + player.namePlayer+":" + player.pointsForOneRound + " ")
 
     myString
   }

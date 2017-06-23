@@ -8,11 +8,11 @@ import scala.swing.Publisher
 
 
 class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
-                 val cardsFactory: ICardsFactory) extends Publisher {
+                 val cardsFactory: ICardsFactory, val amountOfCards:Int,  val amountOfMaxPlayers:Int) extends Publisher {
 
-  //TODO: Das muss in der Main festgelegt sein...und darf nicht dynamisch sein
-  def getAmountOfPlayers()=3
-  def getAmountOfCards()=4
+
+  def getAmountOfMaxPlayers()=amountOfMaxPlayers
+  def getAmountOfCards()=amountOfCards
 
   //TODO: falls wir das noch machen wollen
   def redo()= ???
