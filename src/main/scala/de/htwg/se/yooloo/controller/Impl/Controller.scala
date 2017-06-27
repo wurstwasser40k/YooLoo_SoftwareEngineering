@@ -7,18 +7,12 @@ import scala.swing.Publisher
 
 
 class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
-                 val cardsFactory: ICardsFactory, val amountOfCards:Int,  val amountOfMaxPlayers:Int) extends Publisher {
+                 val cardsFactory: ICardsFactory, val amountOfCards: Int, val amountOfMaxPlayers: Int) extends Publisher {
 
 
+  def getAmountOfMaxPlayers() = amountOfMaxPlayers
 
-  def getAmountOfMaxPlayers()=amountOfMaxPlayers
-  def getAmountOfCards()=amountOfCards
-
-
-
-  //TODO: falls wir das noch machen wollen
-  def redo() = ???
-  def undo() = ???
+  def getAmountOfCards() = amountOfCards
 
 
   /*
@@ -64,13 +58,15 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
 
   def changeCurrentPlayer(): Unit = {
     indexCurrentPlayer match {
+      case a if getIndexCurrentPlayer == players.size-1 =>
       case b if b < players.size - 1 => this.currentNamePlayer = players(indexCurrentPlayer + 1).namePlayer
         this.indexCurrentPlayer += 1
         publish(new CurrentPlayerEvent())
+
     }
   }
 
-  def insertCards(input: Int): Unit = {
+ /* def insertCards(input: Int): Unit = {
     if (players(1).cards == null) {
       addCard(input)
     }
@@ -83,11 +79,9 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
        */
     else publish(new FullCardsEvent())
   }
+  */
 
 
-  /**
-    * Currentplayer adds cards
-    */
   def addCard(input: Int): Unit = {
     //  tmpCards
     var tmpCards: ICards = players(indexCurrentPlayer).cards
@@ -105,9 +99,10 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     tmpPlayers = tmpPlayers.updated(indexCurrentPlayer, tmpPlayer)
 
     players = tmpPlayers
-    //currPlayer = players(indexCurrentPlayer)
+
     publish(new CardAddedEvent())
   }
+
 
   def evaluatePoints(): Unit = {
     this.pointsInThePot += this.pointValue

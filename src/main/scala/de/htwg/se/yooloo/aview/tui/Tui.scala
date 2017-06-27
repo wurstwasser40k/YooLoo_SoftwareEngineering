@@ -44,7 +44,7 @@ class Tui(controller: Controller) extends Reactor {
       case "q" => println("Thank you for playing.")
         controller.exit()
       case cards if input.toInt > 0 && input.toInt < 11 => //adding name current Player
-        controller.insertCards(input.toInt)
+        controller.addCard(input.toInt)
     }
   }
 
