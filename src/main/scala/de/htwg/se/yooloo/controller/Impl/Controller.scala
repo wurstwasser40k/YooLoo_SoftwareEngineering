@@ -69,7 +69,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
         publish(new CurrentPlayerEvent())
     }
   }
-
+/*
   def insertCards(input: Int): Unit = {
     if (players(1).cards == null) {
       addCard(input)
@@ -83,12 +83,14 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
        */
     else publish(new FullCardsEvent())
   }
+  */
 
 
   /**
     * Currentplayer adds cards
     */
   def addCard(input: Int): Unit = {
+    if(input<=amountOfCards){
     //  tmpCards
     var tmpCards: ICards = players(indexCurrentPlayer).cards
     var tmpPlayer: IPlayer = null
@@ -107,6 +109,7 @@ class Controller(var players: List[IPlayer], val playerFactory: IPlayerFactory,
     players = tmpPlayers
     //currPlayer = players(indexCurrentPlayer)
     publish(new CardAddedEvent())
+    }
   }
 
   def evaluatePoints(): Unit = {

@@ -28,8 +28,13 @@ class ControllerSpec extends WordSpec with Matchers {
           controller.players.size should be (2)
           controller.setCurrentPlayer()
           controller.getNameCurrentPlayer() should be ("Sven")
+          controller.getIndexCurrentPlayer
+          controller.getIndexCurrentPlayer should be (0)
         }
       }
+
+
+
 
       /*
       "notify its Observer after card current player was set" in {
@@ -42,5 +47,8 @@ class ControllerSpec extends WordSpec with Matchers {
       }
       */
     }
-  }
+
+
+
+    }
 }
